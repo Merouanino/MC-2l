@@ -62,7 +62,7 @@ const traite_requete = function (req, res) {
 // CREATION ET LANCEMENT DU SERVEUR
 
 mon_serveur = http.createServer(traite_requete);
-port = 5000;
+port = 8080;
 // Pour récupérer le numéro du port depuis la ligne de commande. Exemple : node index.js 5000
 // port = process.argv[2];
 console.log("Serveur en ecoute sur port " + port);
