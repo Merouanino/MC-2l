@@ -37,6 +37,7 @@ const trait = function (req, res, query) {
 		nouveauMembre = {};
 		nouveauMembre.pseudo = query.pseudo;
 		nouveauMembre.password = query.password;
+		nouveauMembre.coins = 1000;
 		listeMembres[listeMembres.length] = nouveauMembre;
 
 		contenu_fichier = JSON.stringify(listeMembres);
@@ -63,6 +64,7 @@ const trait = function (req, res, query) {
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
 		marqueurs.password = query.password;
+		marqueurs.coins = 1000;
 		page = nunjucks.renderString(page, marqueurs);
 	}
 
