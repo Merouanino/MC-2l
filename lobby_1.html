@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lobby 1</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="modele_lobby_1.css">
+		<meta http-equiv="refresh" content="5; url=/req_xxx">;
+    </head>
+    <body>
+		<h1> Veuillez patientez </h1>
+
+		<p> Liste d'attente : </p>
+
+		{% for pseudo in liste %}
+		<li>
+        	{{ pseudo }}
+		</li>
+		{% endfor %}
+
+		<input type="text" name="bouton" value="Quitter"></br>
+    </body>
+</html>
+
