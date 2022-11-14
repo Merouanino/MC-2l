@@ -8,14 +8,22 @@ let port;
 const fs = require("fs");
 
 // Vérification de l'existence des tables et des lobbys
+//https://nodejs.org/dist/latest-v18.x/docs/api/fs.html#fsaccesssyncpath-mode
 
+try{
+let table = fs.accessSync("tables.json", "UTF-8");
+let lobby = fs.accessSync("lobbys.json", "UTF-8");
+} catch (err) {
+	console.error('no access!');
+}
 
+if(table == false){
+	fs.writeFileSync("tables.json", [{"joueurs" : []},{"joueurs" : []},{"joueurs" : []}], "UTF-8");
+}
 
-
-
-
-
-
+if(lobby == false){
+	fs.writeFileSync("lobbys.json", [{"joueurs" : [],"min" : 20},{"joueurs" : [], "min" : 50},{"joueurs" : [], "min" : 100}], "UTF-8");
+}
 // DECLARATION DES DIFFERENTS MODULES CORRESPONDANT A CHAQUE ACTION
 
 const req_commencer = require("./req_commencer.js");
