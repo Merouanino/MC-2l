@@ -1,11 +1,20 @@
 // Site WEB demo PI
 
 "use strict";
-//test
 const http = require("http");
 const url = require("url");
 let mon_serveur;
 let port;
+const fs = require("fs");
+
+// Vérification de l'existence des tables et des lobbys
+
+
+
+
+
+
+
 
 // DECLARATION DES DIFFERENTS MODULES CORRESPONDANT A CHAQUE ACTION
 
