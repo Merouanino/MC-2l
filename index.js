@@ -77,6 +77,8 @@ const traite_requete = function (req, res) {
 			case '/req_identifier':
 				req_identifier(req, res, query);
 				break;
+			case '/req_rejoindre' : 
+				req_rejoindre(req,res,query);
 			default:
 				req_statique(req, res, query);
 				break;
