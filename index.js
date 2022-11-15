@@ -21,6 +21,7 @@ const verificateurtables = function(f){
 				{"joueurs" : []}
 			]), "UTF-8");
 		}
+	}
 };
 const verficateurlobbys = function(f){
 	try{
@@ -32,6 +33,7 @@ const verficateurlobbys = function(f){
 			{"joueurs" : [], "min" : 50},
 			{"joueurs" : [], "min" : 100}
 		]), "UTF-8");
+		}
 	}
 };
 verificateurtables("tables.json");
