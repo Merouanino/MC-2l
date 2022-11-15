@@ -4,12 +4,33 @@
 		<title>Accueil membre</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="modele_accueil_membre.css">
+		<meta http-equiv="refresh" content="5" url="/req_identifier">
 	</head>
 	<body>
-		<h2>Bienvenue !</h2>
+		<h1>Bienvenue !</h1>
 
-		<p>
-			Bonjour <em>{{ pseudo }}<em>
-		</p>
+		<p><em>{{ pseudo }}</em></p>
+		<p>Vous avez {{credits}} crédits.</p>
+		<p class="table1"> {{ tables[0].joueurs }}/5</p>
+		<p class="table2"> {{ tables[1].joueurs }}/5</p>
+		<p class="table3"> {{ tables[2].joueurs }}/5</p>
+
+			<map name="table_BJ">
+				<area shape="rect" coords="0,0,852,450" href="/rejoindre?choix=0">
+			</map>
+			<img class="img1" usemap="#table_BJ" src="images/table_BJ.png" alt="table_BJ" >
+
+
+		<map name="table_BJ2">
+			<area shape="rect" coords="0,0,852,450" href="/rejoindre?choix=1">
+		</map>
+		<img class="img2" usemap="#table_BJ2" src="images/table_BJ.png" alt="table_BJ">
+
+		<map name="table_BJ3">
+			<area shape="rect" coords="0,0,852,450" href="/rejoindre?choix=2">
+		</map>
+		<img class="img3" usemap="#table_BJ3" src="images/table_BJ.png" alt="table_BJ">
+
+		</form>
 	</body>
 </html>
