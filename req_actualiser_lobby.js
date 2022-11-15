@@ -11,44 +11,44 @@ const trait = function (req, res, query) {
 	let page;
     let lobby;
 	let fichier;
-	//let membres;
+	let membres;
 	let pseudo;
 	let i;
-	let tables;
+	let contenu;
 	let joueur;
 	let joueur_attente;
+	let pseudos;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
 
-	//lecture des fichiers json
-
-	lobby = fs.readFileSync("lobby.json", "UTF-8");
-    lobby = JSON.parse(lobby);
+	//Récupération du contexte
 	
-	//membres = fs.readFileSync("membres.json", "UTF-8");
-    //membres = JSON.parse(membres);
-
-	tables = fs.readFileSync("tables.json", "UTF-8");
-    tables = JSON.parse(tables);
+	contenu = fs.readFileSync("lobbys.json", "UTF-8");
+    lobby = JSON.parse(contenu);
+	
+	contenu = fs.readFileSync("membres.json", "UTF-8");
+    membres = JSON.parse(contenu);
 	
 	//Récupérarion de l'indice du pseudo et suppression dans la liste qd on appuie sur "quitter"
 
 	pseudo = query.pseudo;
-	pseudo = lobby.indexOf(pseudo);
+	pseudos = [];
 
-	if(query.bouton === 'Quitter'){
+	for(let i = 0; i < lobby.joueurs.length; i++){
+		pseudos.push(membres[lobby.joueurs[i]].pseudo);
+	}
+
+
+
+	/*if(query.bouton === 'Quitter'){
+		pseudo = lobby.indexOf(pseudo);
 		lobby.splice(pseudo, 1);
         lobby = JSON.stringify(lobby);
         lobby = fs.writeFileSync("lobby.json", lobby, 'utf-8');
-	}
+	}*/
 
-/*
-	//html += `< img src ="` +situation[id]+ `.png">`;
-    marqueurs = {};
-	marqueurs[""] = "";
-*/
 	joueur = tables.joueurs;
 	joueur_attente = lobby.joueurs;
 
@@ -58,6 +58,7 @@ const trait = function (req, res, query) {
 			joueur_attente.splice(0, 1);
 		}
 	}
+
 
 	page = nunjucks.renderString(page, marqueurs);
 

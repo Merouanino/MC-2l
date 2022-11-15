@@ -3,21 +3,21 @@
     <head>
         <title>Lobby</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="modele_lobby_1.css">
-		<meta http-equiv="refresh" content="5"; url="/req_XXX">;
+        <link rel="stylesheet" type="text/css" href="modele_lobby.css">
+		<meta http-equiv="refresh" content="5; url=/req_actualiser_lobby?choix={{choix}}&pseudo={{pseudo}}">;
     </head>
     <body>
-		<h1> Veuillez patientez </h1>
+		<h1> Veuillez patientez</h1>
 
 		<p> Liste d'attente : </p>
 
-		{% for pseudo in liste %}
+		{% for pseudo in pseudos %}
 		<li>
         	{{ pseudo }}
 		</li>
 		{% endfor %}
 
-		<input type="text" name="bouton" value="Quitter"></br>
+		<a href="/req_quitter_lobby?pseudo={{pseudo}}">Quitter</a>
     </body>
 </html>
 
