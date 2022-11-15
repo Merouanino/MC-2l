@@ -1,22 +1,64 @@
+@font-face {
+    font-family:"avion";
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+}
+
 html{
-    background-image : url('/images/accueil_membre.jpg');
+    /* background-image : url('/images/accueil_membre.jpg'); */
     background-size : cover;
     background-repeat: no-repeat;
     height : 100%;
+    font-family:"avion";
 }
 
 body{
     margin : auto;
-    margin-top: 10%;
-    line-height: 25px;
+    margin-top: 5%;
+    line-height: 20px;
     text-align: center;
-    width: 1200px;
-    padding: 2em;
-    border: 2px solid white;
-    background : white;
-    opacity: 0.8;
+    width: 1000px;
 }
 
-h3{
-    text-align : left;
+.img1{
+    padding-top: 40px;
+    width: 250px;
+    height: auto;
+    position: absolute;
+    left: 10%;
+    right: 90%;
+    
+}
+
+.img2{
+    padding-top: 40px;
+    width: 250px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.img3{
+    padding-top: 40px;
+    width: 250px;
+    height: auto;
+    position: absolute;
+    right: 10%;
+}
+
+h1{   
+    font-size: 300%;
+}
+
+.table1{
+    position: absolute;
+}
+
+.table2{
+    position: center,absolute;
+}
+
+.table3{
+    position: absolute;
 }
