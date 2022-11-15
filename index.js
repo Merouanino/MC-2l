@@ -15,16 +15,24 @@ const verificateurtables = function(f){
 		fs.accessSync(f, fs.constants.R_OK);
 	} catch (err) {
 		if (err.code === "ENOENT"){
-			fs.writeFileSync("tables.json", [{"joueurs" : []},{"joueurs" : []},{"joueurs" : []}], "UTF-8");
+			fs.writeFileSync("tables.json", JSON.stringify([
+				{"joueurs" : []},
+				{"joueurs" : []},
+				{"joueurs" : []}
+			]), "UTF-8");
 		}
 };
 const verficateurlobbys = function(f){
 	try{
 		fs.accessSync(f, fs.constants.R_OK);
 	} catch (err) {
-		if (err.code === "ENOENT"){	
-		fs.writeFileSync("lobbys.json", [{"joueurs" : [],"min" : 20},{"joueurs" : [], "min" : 50},{"joueurs" : [], "min" : 100}], "UTF-8");
-		}
+		if (err.code === "ENOENT"){
+		fs.writeFileSync("lobbys.json", JSON.stringify([
+			{"joueurs" : [],"min" : 20},
+			{"joueurs" : [], "min" : 50},
+			{"joueurs" : [], "min" : 100}
+		]), "UTF-8");
+	}
 };
 verificateurtables("tables.json");
 verificateurlobbys("lobbys.json");
