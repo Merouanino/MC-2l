@@ -23,7 +23,7 @@ const req_rejoindre = function (req,res,query){
 	pseudos = [];
 
 	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-		pseudos.push(membres[ lobby.joueurs[i] ];
+		pseudos.push(membres[ lobby.joueurs[i] ]);
 	}
 	
 	//Mémorisation du Contexte
