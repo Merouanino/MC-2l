@@ -37,6 +37,11 @@ const actualiser_lobby = function (req, res, query) {
 	for(let i = 0; i < lobby.joueurs.length; i++){
 		pseudos.push(membres[lobby.joueurs[i]].pseudo);
 	}
+
+    //Mémorisation du Contexte
+
+    contenu = JSON.stringify(lobby);
+    fs.writeFileSync("lobby.json", contenu, "utf-8");
 	
 	//Vérifier si la table est libre
 	//on veut récupérer les personnes qui désire continuer la partie à la fin d'une manche et leur pseudo
