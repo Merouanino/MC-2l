@@ -6,6 +6,8 @@ const nj = require("nunjucks");
 const req_rejoindre = function (req,res,query){
 	let page = fs.readFileSync(`modele_lobby.html`, "UTF-8");	
 	let contenu;
+	let requete;
+	let pathname;
 	
 	//Récupération du Contexte
 	
@@ -15,7 +17,11 @@ const req_rejoindre = function (req,res,query){
 	lobby = JSON.parse(lobby);
 	let membres = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(membres);
-	
+
+	requete = url.parse(req.url, true);
+	pathname = requete.pathname;
+	query = requete.query;
+
 	//Traitement
 	
 	for (let i = 0; i < membres.length; i++){
