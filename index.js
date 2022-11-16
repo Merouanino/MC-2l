@@ -76,7 +76,7 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_rejoindre' : 
 				req_rejoindre(req,res,query);
-			case '/req_quitter_lobby'
+			case '/req_quitter_lobby' :
 				req_quitter_lobby(req,res,query);
 			default:
 				req_statique(req, res, query);
