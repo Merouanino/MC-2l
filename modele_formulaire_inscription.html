@@ -12,7 +12,7 @@
 
 		<form action="/req_inscrire" method="GET">
 			<label>Pseudo :</label>
-			<input type="text" name="pseudo" value="{{ pseudo }}">
+			<input type="text" name="pseudo" value="{{ pseudo }}" pattern=".{3,}" required>
 			<br/>
 			<label>Mot de passe :</label>
 			<input type="text" name="password" value="" pattern=".{4,}" required>
