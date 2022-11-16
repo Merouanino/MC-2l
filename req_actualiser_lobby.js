@@ -21,6 +21,8 @@ const actualiser_lobby = function (req, res, query) {
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
+	
+	choix = query.choix;
 
 	//Récupération du contexte
 	
@@ -35,8 +37,8 @@ const actualiser_lobby = function (req, res, query) {
 	pseudo = query.pseudo;
 	pseudos = [];
 
-	for(let i = 0; i < lobby.joueurs.length; i++){
-		pseudos.push(membres[lobby.joueurs[i]].pseudo);
+	for(let i = 0; i < lobby[choix].joueurs.length; i++){
+		pseudos.push(membres[lobby.joueurs[i].pseudo]);
 	}
 
     //Mémorisation du Contexte
@@ -47,7 +49,6 @@ const actualiser_lobby = function (req, res, query) {
 	//Vérifier si la table est libre
 	//on veut récupérer les personnes qui désire continuer la partie à la fin d'une manche et leur pseudo
 	
-	choix = query.choix;
 
 	joueur = tables.joueurs;
 	joueur_attente = lobby.joueurs;
