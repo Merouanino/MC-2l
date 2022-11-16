@@ -3,21 +3,20 @@
 const fs = require("fs");
 const nunjucks = require("nunjucks");;
 
-const trait = function (req, res, query) {
+const actualiser_lobby = function (req, res, query) {
 	let requete;
 	let pathname;
 	let query;
-    let marqueurs;
-	let page;
+	let contenu;
     let lobby;
-	let fichier;
 	let membres;
 	let pseudo;
-	let i;
-	let contenu;
+	let pseudos;
+	let continuer;
 	let joueur;
 	let joueur_attente;
-	let pseudos;
+	let choix;
+	let marqueurs;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -31,7 +30,7 @@ const trait = function (req, res, query) {
 	contenu = fs.readFileSync("membres.json", "UTF-8");
     membres = JSON.parse(contenu);
 	
-	//Récupérarion de l'indice du pseudo et suppression dans la liste qd on appuie sur "quitter"
+	//Actualiser la liste d'attente avec les pseudo
 
 	pseudo = query.pseudo;
 	pseudos = [];
@@ -39,26 +38,32 @@ const trait = function (req, res, query) {
 	for(let i = 0; i < lobby.joueurs.length; i++){
 		pseudos.push(membres[lobby.joueurs[i]].pseudo);
 	}
-
-
-
-	/*if(query.bouton === 'Quitter'){
-		pseudo = lobby.indexOf(pseudo);
-		lobby.splice(pseudo, 1);
-        lobby = JSON.stringify(lobby);
-        lobby = fs.writeFileSync("lobby.json", lobby, 'utf-8');
-	}*/
+	
+	//Vérifier si la table est libre
+	//on veut récupérer les personnes qui désire continuer la partie à la fin d'une manche et leur pseudo
+	
+	choix = query.choix;
 
 	joueur = tables.joueurs;
 	joueur_attente = lobby.joueurs;
 
-	if(){
-		for(i = joueur.length; i < 4; i ++){
+	continuer = lobby.continuer; //on souhaite récupérer cette information sur chaque joueur ayant fait ce choix
+	joueur_continuer = lobby.pseudo;
+
+	/*if(continuer === true){
+		for(let i = joueur.length; i < 4; i ++){
 			joueur.push(joueur_attente[0]);
 			joueur_attente.splice(0, 1);
 		}
-	}
+	}*/
 
+	/*for(let i = 0; i < 4; i++){
+		
+
+	}*/
+	
+	marqueurs = {};
+	marqueurs.pseudo = "";
 
 	page = nunjucks.renderString(page, marqueurs);
 
@@ -67,5 +72,5 @@ const trait = function (req, res, query) {
     res.end();
 };
 
-module.exports = trait;
+module.exports = actualiser_lobby;
 
