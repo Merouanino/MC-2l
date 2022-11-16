@@ -26,9 +26,9 @@ try{
 } catch (err) {
 	if (err.code === "ENOENT"){
 	fs.writeFileSync("lobbys.json", JSON.stringify([
-		{"joueurs" : [],"min" : 20},
-		{"joueurs" : [], "min" : 50},
-		{"joueurs" : [], "min" : 100}
+		{"joueurs" : [],"min" : 20, "continuer" : false},
+		{"joueurs" : [], "min" : 50,"continuer" : false},
+		{"joueurs" : [], "min" : 100, "continuer" : false}
 	]), "UTF-8");
 	}
 }
@@ -40,6 +40,7 @@ const req_afficher_formulaire_inscription = require("./req_afficher_formulaire_i
 const req_inscrire = require("./req_inscrire.js");
 const req_identifier = require("./req_identifier.js");
 const req_rejoindre = require("./req_rejoindre.js");
+const req_quitter_lobby = require("./req_quitter_lobby");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 
@@ -75,6 +76,8 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_rejoindre' : 
 				req_rejoindre(req,res,query);
+			case '/req_quitter_lobby'
+				req_quitter_lobby(req,res,query);
 			default:
 				req_statique(req, res, query);
 				break;
