@@ -6,7 +6,6 @@ const nunjucks = require("nunjucks");;
 const actualiser_lobby = function (req, res, query) {
 	let requete;
 	let pathname;
-	let query;
 	let contenu;
     let lobby;
 	let membres;
