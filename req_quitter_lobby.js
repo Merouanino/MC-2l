@@ -9,20 +9,24 @@ const req_quitter_lobby = function (req, res, query) {
     let marqueurs;
 	let page;
     let lobby;
-	let pseudo;
+	let joueur;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
 
 	//Lecture du fichier json 
-	lobby = fs.readFileSync("lobby.json", "UTF-8");
-    lobby = JSON.parse(lobby)
+	lobby = fs.readFileSync("lobbys.json", "UTF-8");
+    lobby = JSON.parse(lobby);
+
+	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
+	joueur = query.pseudo;
+	joueur = lobby.joueurs.indexOf(joueur);
 	
 	//supprétion du joueur ayant quitter le lobby
-	lobby.splice(pseudo, 1);
+	lobby.splice(joueur, 1);
 	lobby = JSON.stringify(lobby);
-	lobby = fs.writeFileSync("lobby.json", lobby, 'utf-8');
+	lobby = fs.writeFileSync("lobbys.json", lobby, 'utf-8');
 
 	//page = nunjucks.renderString(page, marqueurs);
 	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
