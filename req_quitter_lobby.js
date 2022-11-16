@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const nunjucks = require("nunjucks");;
+const url = require('url');
 
 const req_quitter_lobby = function (req, res, query) {
 	let requete;
