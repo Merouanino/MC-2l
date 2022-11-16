@@ -2,6 +2,7 @@
 "use strict";
 const fs = require("fs");
 const nj = require("nunjucks");
+const url = require('url');
 
 const req_rejoindre = function (req,res,query){
 	let page = fs.readFileSync(`modele_lobby.html`, "UTF-8");	
@@ -33,7 +34,7 @@ const req_rejoindre = function (req,res,query){
 	let pseudos = [];
 
 	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-		pseudos.push(membres[ lobby[j].joueurs ]);
+		pseudos.push(membres[ lobby[j].joueurs].pseudo );
 	}
 	
 	//Mémorisation du Contexte
@@ -45,8 +46,8 @@ const req_rejoindre = function (req,res,query){
 
 	let marqueurs = {};
 	marqueurs["pseudos"] = pseudos;	
-	marqueurs.erreur = "";
-	marqueurs.pseudo = "";
+	//marqueurs.erreur = "";
+	//marqueurs.pseudo = "";
 	page = nj.renderString(page,marqueurs);
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });
 	res.write(page);

@@ -1,7 +1,7 @@
 "use strict";
 
 const fs = require("fs");
-const nunjucks = require("nunjucks");;
+const nunjucks = require("nunjucks");
 const url = require("url");
 
 const actualiser_lobby = function (req, res, query) {
@@ -17,6 +17,7 @@ const actualiser_lobby = function (req, res, query) {
 	let joueur_attente;
 	let choix;
 	let marqueurs;
+	let page = fs.readFileSync("modele_lobby.html", "utf-8");
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -38,23 +39,23 @@ const actualiser_lobby = function (req, res, query) {
 	pseudos = [];
 
 	for(let i = 0; i < lobby[choix].joueurs.length; i++){
-		pseudos.push(membres[lobby.joueurs[i].pseudo]);
+		pseudos.push(membres[lobby[i].joueurs]);
 	}
 
     //Mémorisation du Contexte
 
     contenu = JSON.stringify(lobby);
-    fs.writeFileSync("lobby.json", contenu, "utf-8");
+    fs.writeFileSync("lobbys.json", contenu, "utf-8");
 	
 	//Vérifier si la table est libre
 	//on veut récupérer les personnes qui désire continuer la partie à la fin d'une manche et leur pseudo
 	
 
-	joueur = tables.joueurs;
-	joueur_attente = lobby.joueurs;
+	//joueur = tables.joueurs;
+	//joueur_attente = lobby.joueurs;
 
-	continuer = lobby.continuer; //on souhaite récupérer cette information sur chaque joueur ayant fait ce choix
-	joueur_continuer = lobby.pseudo;
+	//continuer = lobby.continuer; //on souhaite récupérer cette information sur chaque joueur ayant fait ce choix
+	//joueur_continuer = lobby.pseudo;
 
 	/*if(continuer === true){
 		for(let i = joueur.length; i < 4; i ++){
