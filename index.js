@@ -77,10 +77,13 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_rejoindre' : 
 				req_rejoindre(req,res,query);
+				break;
 			case '/req_actualiser_lobby' : 
 				actualiser_lobby(req,res,query);
+				break;
 			case '/req_quitter_lobby' :
 				req_quitter_lobby(req,res,query);
+				break;
 			default:
 				req_statique(req, res, query);
 				break;
