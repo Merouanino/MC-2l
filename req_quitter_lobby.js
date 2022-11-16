@@ -11,6 +11,7 @@ const req_quitter_lobby = function (req, res, query) {
 	let page;
     let lobby;
 	let joueur;
+	let choix;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -21,11 +22,17 @@ const req_quitter_lobby = function (req, res, query) {
     lobby = JSON.parse(lobby);
 
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
+	choix = query.choix;
+
 	joueur = query.pseudo;
-	joueur = lobby.joueurs.indexOf(joueur);
+	choix = query.choix;
+	joueur = lobby[choix].joueurs.indexOf(joueur);
+	//joueur = lobby.joueurs.indexOf(joueur);
+	//choix = lobby.choix.indexOf(choix);
 	
 	//supprétion du joueur ayant quitter le lobby
-	lobby.splice(joueur, 1);
+	lobby.joueurs.splice(joueur, 1); // faut recup la bonne liste -> bon choix (table)
+	//lobby.splice(joueur, 1); // supp ce que contient json sniff ;-;
 	lobby = JSON.stringify(lobby);
 	lobby = fs.writeFileSync("lobbys.json", lobby, 'utf-8');
 

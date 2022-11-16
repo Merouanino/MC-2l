@@ -39,7 +39,7 @@ const actualiser_lobby = function (req, res, query) {
 	pseudos = [];
 
 	for(let i = 0; i < lobby[choix].joueurs.length; i++){
-		pseudos.push(membres[lobby[i].joueurs]);
+		pseudos.push(membres[lobby[choix].joueurs[i]]);
 	}
 
     //Mémorisation du Contexte
@@ -68,9 +68,11 @@ const actualiser_lobby = function (req, res, query) {
 		
 
 	}*/
-	
+	console.log(choix);
+
 	marqueurs = {};
-	marqueurs.pseudo = "";
+	marqueurs.pseudo = pseudo;
+	marqueurs.choix = choix;
 
 	page = nunjucks.renderString(page, marqueurs);
 

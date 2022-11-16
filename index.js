@@ -26,9 +26,9 @@ try{
 } catch (err) {
 	if (err.code === "ENOENT"){
 	fs.writeFileSync("lobbys.json", JSON.stringify([
-		{"joueurs" : [],"min" : 20, "continuer" : false},
-		{"joueurs" : [], "min" : 50,"continuer" : false},
-		{"joueurs" : [], "min" : 100, "continuer" : false}
+		{"joueurs" : [],"choix" : [0], "min" : 20, "continuer" : false},
+		{"joueurs" : [],"choix" : [1], "min" : 50,"continuer" : false},
+		{"joueurs" : [],"choix" : [3], "min" : 100, "continuer" : false}
 	]), "UTF-8");
 	}
 }

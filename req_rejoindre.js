@@ -34,7 +34,7 @@ const req_rejoindre = function (req,res,query){
 	let pseudos = [];
 
 	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-		pseudos.push(membres[ lobby[j].joueurs].pseudo );
+		pseudos.push(membres[ lobby[choix].joueurs[j]].pseudo );
 	}
 	
 	//Mémorisation du Contexte
@@ -47,7 +47,9 @@ const req_rejoindre = function (req,res,query){
 	let marqueurs = {};
 	marqueurs["pseudos"] = pseudos;	
 	//marqueurs.erreur = "";
-	//marqueurs.pseudo = "";
+	marqueurs.pseudo = pseudo;
+	marqueurs.choix = choix;
+
 	page = nj.renderString(page,marqueurs);
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });
 	res.write(page);
