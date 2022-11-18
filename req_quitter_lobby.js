@@ -14,6 +14,19 @@ const req_quitter_lobby = function (req, res, query) {
 	let pseudo;
 	let choix;
 
+	//Récupération des crédits associés au compte
+	let coins;
+	let members;
+	pseudo = query.pseudo;
+	members = fs.readFileSync("membres.json", "UTF-8");
+	members = JSON.parse(members);
+	for (let i = 0; i < members.length; i++){
+		if(members[i].pseudo === pseudo){
+			coins = members[i].coins;
+		}
+	}
+
+
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
@@ -26,7 +39,6 @@ const req_quitter_lobby = function (req, res, query) {
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
 	choix = query.choix;
-	pseudo = query.pseudo;
 	joueur = lobby[choix].joueurs.indexOf(joueur);
 	
 	//joueur = lobby.joueurs.indexOf(joueur);
@@ -46,6 +58,7 @@ const req_quitter_lobby = function (req, res, query) {
 	//marqueurs["pseudos"] = pseudos;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
+	marqueurs.credits = coins;
 	page = nj.renderString(page,marqueurs);
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write(page);
