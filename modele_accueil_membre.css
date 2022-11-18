@@ -62,3 +62,12 @@ h1{
 .table3{
     position: absolute;
 }
+
+a{
+    text-decoration: none;  
+}
+
+.rickroll{
+    position: absolute;
+    bottom: 5%;
+}
