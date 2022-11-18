@@ -13,11 +13,20 @@ const trait = function (req, res, query) {
 	let listeMembres;
 	let i;
 	let trouve;
-
+	let coins;
+	let pseudo = query.pseudo;
 	// ON LIT LES COMPTES EXISTANTS
 
 	contenu_fichier = fs.readFileSync("membres.json", 'utf-8');
 	listeMembres = JSON.parse(contenu_fichier);
+
+	// On cherche le nombre de crédits 
+	for(let i = 0; i < listeMembres.length; i++){
+		if(listeMembres[i].pseudo === pseudo){
+			coins = listeMembres[i].coins;
+		}
+	}
+
 
 	// ON VERIFIE QUE LE PSEUDO/PASSWORD EXISTE
 
@@ -51,6 +60,7 @@ const trait = function (req, res, query) {
 
 		marqueurs = {};
 		marqueurs.pseudo = query.pseudo;
+		marqueurs.credits = coins;
 		page = nunjucks.renderString(page, marqueurs);
 	}
 
