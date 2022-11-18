@@ -25,7 +25,6 @@ const req_quitter_lobby = function (req, res, query) {
 	choix = query.choix;
 
 	joueur = query.pseudo;
-	choix = query.choix;
 	joueur = lobby[choix].joueurs.indexOf(joueur);
 	//joueur = lobby.joueurs.indexOf(joueur);
 	//choix = lobby.choix.indexOf(choix);
