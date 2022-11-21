@@ -9,8 +9,15 @@
 
     <body>
             <form action="" method="get" hre>
-                <input type="submit" name="req_prendre" value="+"><br>
-                <input type="submit" name="req_passer" value="-">
+                <input type="submit" name="req_prendre" value="prendre"><br>
+                <input type="submit" name="req_passer" value="passer">
             </form>
+            
+            {% for carte in cartes %}
+		<li>
+        	{{ carte }}
+		</li>
+		{% endfor %}
+            
     </body>
 </html>
