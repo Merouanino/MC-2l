@@ -15,9 +15,9 @@ try{
 } catch (err) {
 	if (err.code === "ENOENT"){
 		fs.writeFileSync("tables.json", JSON.stringify([
-			{"joueurs" : []},
-			{"joueurs" : []},
-			{"joueurs" : []}
+			{"joueurs" : [],"etat" : false},
+			{"joueurs" : [],"etat" : false},
+			{"joueurs" : [],"etat" : false}
 		]), "UTF-8");
 	}
 }
@@ -28,7 +28,7 @@ try{
 	fs.writeFileSync("lobbys.json", JSON.stringify([
 		{"joueurs" : [],"choix" : [0], "min" : 20, "continuer" : false},
 		{"joueurs" : [],"choix" : [1], "min" : 50,"continuer" : false},
-		{"joueurs" : [],"choix" : [3], "min" : 100, "continuer" : false}
+		{"joueurs" : [],"choix" : [2], "min" : 100, "continuer" : false}
 	]), "UTF-8");
 	}
 }
