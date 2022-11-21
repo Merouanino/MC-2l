@@ -15,9 +15,9 @@ try{
 } catch (err) {
 	if (err.code === "ENOENT"){
 		fs.writeFileSync("tables.json", JSON.stringify([
-			{"joueurs" : [],"etat" : false},
-			{"joueurs" : [],"etat" : false},
-			{"joueurs" : [],"etat" : false}
+			{"joueurs" : [],"etat" : true},
+			{"joueurs" : [],"etat" : true},
+			{"joueurs" : [],"etat" : true}
 		]), "UTF-8");
 	}
 }
