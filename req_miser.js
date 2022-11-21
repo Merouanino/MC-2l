@@ -5,7 +5,7 @@ const nj = require("nunjucks");
 const url = require("url");
 
 const req_miser = function (req,res,query){
-	let page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
+	let page;
 	let contenu;
 	let requete;
 	let pathname;
@@ -46,10 +46,10 @@ const req_miser = function (req,res,query){
 	//Fabrication et envoi de la page HTML
 
 	let marqueurs = {};
-	marqueurs["pseudos"] = pseudos;
 	marqueurs.pseudo = pseudo;
 	marqueurs.mise = mise;
 
+	page = fs.readFileSync(`modele_lobby_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
 
 	res.writeHead(200, { 'Content-Type' : 'text/html' });
