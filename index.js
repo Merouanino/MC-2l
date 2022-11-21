@@ -41,7 +41,8 @@ const req_inscrire = require("./req_inscrire.js");
 const req_identifier = require("./req_identifier.js");
 const req_rejoindre = require("./req_rejoindre.js");
 const req_quitter_lobby = require("./req_quitter_lobby");
-const actualiser_lobby = require("./req_actualiser_lobby");
+const req_actualiser_lobby = require("./req_actualiser_lobby");
+const req_miser = require("./req_miser.js");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 
@@ -79,10 +80,13 @@ const traite_requete = function (req, res) {
 				req_rejoindre(req,res,query);
 				break;
 			case '/req_actualiser_lobby' : 
-				actualiser_lobby(req,res,query);
+				req_actualiser_lobby(req,res,query);
 				break;
 			case '/req_quitter_lobby' :
 				req_quitter_lobby(req,res,query);
+				break;
+			case '/req_miser' :
+				req_miser(req,res,query);
 				break;
 			default:
 				req_statique(req, res, query);
