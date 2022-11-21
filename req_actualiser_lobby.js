@@ -57,7 +57,6 @@ const actualiser_lobby = function (req, res, query) {
 	//on veut récupérer le nb de personnes qui désire continuer la partie à la fin d'une manche
 	
 	if(continuer === true){
-		console.log("miam");
 		joueur = 5 - tables[choix].joueurs.length;
 
 		for(let i = 0; i < joueur; i++){
