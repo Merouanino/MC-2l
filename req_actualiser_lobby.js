@@ -7,17 +7,17 @@ const url = require("url");
 const actualiser_lobby = function (req, res, query) {
 	let requete;
 	let pathname;
+	let choix;
 	let contenu;
     let lobby;
 	let membres;
+	let tables;
 	let pseudo;
 	let pseudos;
 	let continuer;
 	let joueur;
-	let joueur_attente;
-	let choix;
 	let marqueurs;
-	let page = fs.readFileSync("modele_lobby.html", "utf-8");
+	let page;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -33,6 +33,9 @@ const actualiser_lobby = function (req, res, query) {
 	contenu = fs.readFileSync("membres.json", "UTF-8");
     membres = JSON.parse(contenu);
 	
+	contenu = fs.readFileSync("tables.json", "UTF-8");
+    tables = JSON.parse(contenu);
+
 	//Actualiser la liste d'attente avec les pseudo
 
 	pseudo = query.pseudo;
@@ -48,27 +51,32 @@ const actualiser_lobby = function (req, res, query) {
     fs.writeFileSync("lobbys.json", contenu, "utf-8");
 	
 	//Vérifier si la table est libre
-	//on veut récupérer les personnes qui désire continuer la partie à la fin d'une manche et leur pseudo
 	
+	continuer = tables[choix].etat;
+	
+	//on veut récupérer le nb de personnes qui désire continuer la partie à la fin d'une manche
+	
+	if(continuer === true){
+		console.log("miam");
+		joueur = 5 - tables[choix].joueurs.length;
 
-	//joueur = tables.joueurs;
-	//joueur_attente = lobby.joueurs;
-
-	//continuer = lobby.continuer; //on souhaite récupérer cette information sur chaque joueur ayant fait ce choix
-	//joueur_continuer = lobby.pseudo;
-
-	/*if(continuer === true){
-		for(let i = joueur.length; i < 4; i ++){
-			joueur.push(joueur_attente[0]);
-			joueur_attente.splice(0, 1);
+		for(let i = 0; i < joueur; i++){
+			tables[choix].joueurs.push(lobby[choix].joueurs[0]);
+			lobby[choix].joueurs.splice(0, 1);
 		}
-	}*/
+		page = fs.readFileSync("modele_jeu.html", "utf-8");
+	}else{
+		page = fs.readFileSync("modele_lobby.html", "utf-8");
+	}
 
-	/*for(let i = 0; i < 4; i++){
-		
 
-	}*/
-	console.log(choix);
+	//Mémorisation du Contexte
+
+	tables = JSON.stringify(tables);
+	fs.writeFileSync("tables.json", tables, "utf-8");
+
+	lobby = JSON.stringify(lobby);
+	fs.writeFileSync("lobbys.json", lobby, "utf-8");
 
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
