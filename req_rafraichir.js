@@ -15,6 +15,8 @@ const req_rafraichir = function (req,res,query);{
 	let lobby;
 	let membres;
 	let table;
+	let resultat;
+	let somme;
 
 	//Récupération du Contexte
 
@@ -35,7 +37,9 @@ const req_rafraichir = function (req,res,query);{
 	table = JSON.parse(table);
 
 	//Traitement
-	
+	for(let i = 0; i < table[choix].joueurs.length; i++){
+		
+	}
 	
 
 	//Mémorisation du Contexte
