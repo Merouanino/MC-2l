@@ -33,7 +33,7 @@ const req_miser = function (req,res,query){
 	//Traitement
 	for (let i = 0; i < membres.length; i++){
 		if (membres[i].pseudo === pseudo){
-			joueurs[i].coins -= Number(mise);
+			membres[i].coins -= Number(mise);
 			
 		}
 	}
