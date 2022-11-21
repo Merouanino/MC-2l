@@ -13,10 +13,11 @@
                 <input type="submit" name="req_passer" value="passer">
             </form>
             
-            {% for carte in cartes %}
-		<li>
-        	{{ carte }}
-		</li>
+            {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.png">
+            {{ carte }
+
 		{% endfor %}
             
     </body>

@@ -42,7 +42,11 @@ const req_statique = function (req, res, query) {
 	} else if (extname === ".mp3") {
 		type = 'audio';
 		sousType = 'mp3';
+	} else if (extname === ".svg") {
+		type = 'image';
+		sousType = 'svg+xml';
 	}
+	
 
 	// ENVOI L'ENTETE AVEC LE TYPE PUIS LE FICHIER
 	// SI LE FICHIER N'EXISTE PAS, ENVOI D'UNE PAGE 404
