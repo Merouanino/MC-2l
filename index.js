@@ -43,6 +43,7 @@ const req_rejoindre = require("./req_rejoindre.js");
 const req_quitter_lobby = require("./req_quitter_lobby");
 const req_actualiser_lobby = require("./req_actualiser_lobby");
 const req_miser = require("./req_miser.js");
+const req_rafraichir = require("./req_rafraichir.js");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 
