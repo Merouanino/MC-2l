@@ -48,7 +48,7 @@ const req_rafraichir = function (req,res,query){
 
 	//Traitement
 	for(let i = 0; i < table[choix].joueurs.length; i++){
-		if(membres.pseudo[i] === pseudo && table[choix].etat = true){
+		if(membres.pseudo[i] === pseudo && table[choix].etat === true){
 
 		}
 	}
