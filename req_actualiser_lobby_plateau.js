@@ -43,6 +43,10 @@ const actualiser_lobby = function (req, res, query) {
 		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
 	}
 
+	//on ne peut plus rejoindre la table car etat = false
+
+	tables[choix].etat = false;
+
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
