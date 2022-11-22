@@ -13,12 +13,63 @@
                 <input type="submit" name="req_passer" value="passer">
             </form>
             
-            {% for carte in deck %}
+        <class="banque">
+             {% for carte in deck %}
 
-        	<img@ src="images/img_cartes/{{ carte }}.png">
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
             {{ carte }
 
-		{% endfor %}
-            
+		    {% endfor %}
+        </class>
+
+        <class="joueur_1">
+             {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
+            {{ carte }
+
+		    {% endfor %}
+        </class>
+
+        <class="joueur_2">
+             {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
+            {{ carte }
+
+		    {% endfor %}
+        </class>
+
+        <class="joueur_3">
+             {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
+            {{ carte }
+
+		    {% endfor %}
+        </class>
+
+        <class="joueur_4">
+             {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
+            {{ carte }
+
+		    {% endfor %}
+        </class>
+
+        <class="joueur_5">
+             {% for carte in deck %}
+
+        	<img@ src="images/img_cartes/{{ carte }}.svg">
+            {{ carte }
+
+		    {% endfor %}
+        </class>
+
+        <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
+        <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
+
+
     </body>
 </html>
