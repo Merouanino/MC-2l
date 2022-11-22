@@ -42,6 +42,7 @@ const req_identifier = require("./req_identifier.js");
 const req_rejoindre = require("./req_rejoindre.js");
 const req_quitter_lobby = require("./req_quitter_lobby");
 const req_actualiser_lobby = require("./req_actualiser_lobby");
+const req_actualiser_lobby_plateau = require("./req_actualiser_lobby_plateau");
 const req_miser = require("./req_miser.js");
 const req_rafraichir = require("./req_rafraichir.js");
 const req_ejecter = require("./req_ejecter.js");
@@ -100,6 +101,9 @@ const traite_requete = function (req, res) {
 				break;
 		   case '/req_continuer' :
 				req_continuer(req,res,query);
+				break;
+		   case '/req_actualiser_lobby_plateau' :
+				req_actualiser_lobby_plateau(req,res,query);
 				break;
 			default:
 				req_statique(req, res, query);
