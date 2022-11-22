@@ -4,7 +4,7 @@ const fs = require("fs");
 const nj = require("nunjucks");
 const url = require('url');
 
-const req_rafraichir = function (req,res,query);{
+const req_rafraichir = function (req,res,query){
 	
 	let page = read.FileSync(`modele_plateau.html`, "UTF-8");
 	let contenu;
@@ -23,7 +23,7 @@ const req_rafraichir = function (req,res,query);{
 	let carte = {};
 	carte["1"] = 1; carte["2"] = 2; carte["3"] = 3; carte["4"] = 4; carte["5"] = 5; carte["6"] = 6; carte["7"] = 7; carte["8"] = 8;carte["9"] = 9 ;carte["10"] = 10 ;carte["J"] = 10 ;carte["Q"] = 10;carte["K"] = 10 ;	
 	let couleur ={}
-	couleur["coeur"] : 1; couleur["carreau"] : 2; couleur["pique"] : 3; couleur["trefle"] : 4;
+	couleur["coeur"] = 1; couleur["carreau"] = 2; couleur["pique"] = 3; couleur["trefle"] = 4;
 
 	//Récupération du Contexte
 
@@ -48,7 +48,9 @@ const req_rafraichir = function (req,res,query);{
 
 	//Traitement
 	for(let i = 0; i < table[choix].joueurs.length; i++){
-				
+		if(membres.pseudo[i] === pseudo && table[choix].etat = true){
+
+		}
 	}
 	
 
