@@ -40,7 +40,7 @@ const actualiser_lobby = function (req, res, query) {
 	
 	//rajouter mise dans json
 	if(joueur.length === joueur_mise.length){
-		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
+		page = fs.readFileSync("modele_plateau.html", "utf-8");
 	}
 
 	//on ne peut plus rejoindre la table car etat = false
