@@ -10,7 +10,7 @@ const req_quitter_lobby = function (req, res, query) {
     let marqueurs;
 	let page;
     let joueur;
-	let lobby;
+	let tables;
 	let pseudo;
 	let choix;
 
@@ -36,8 +36,8 @@ const req_quitter_lobby = function (req, res, query) {
 
 	//Lecture du fichier json 
 	
-	lobby = fs.readFileSync("lobbys.json", "UTF-8");
-    lobby = JSON.parse(lobby);
+	tables = fs.readFileSync("tables.json", "UTF-8");
+    tables = JSON.parse(tables);
 
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
@@ -48,8 +48,8 @@ const req_quitter_lobby = function (req, res, query) {
 	
 	lobby[choix].joueurs.splice(joueur, 1);
 	
-	lobby = JSON.stringify(lobby);
-	lobby = fs.writeFileSync("lobbys.json", lobby, 'utf-8');
+	tables = JSON.stringify(tables);
+	tables = fs.writeFileSync("tables.json", tables, 'utf-8');
 	
 	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
 	
