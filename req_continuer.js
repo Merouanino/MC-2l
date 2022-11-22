@@ -40,6 +40,11 @@ const req_continuer = function (req, res, query) {
     table = JSON.parse(contenu);
 
 	table[choix].etat = true;
+
+	//on enregistre
+
+	table = JSON.stringify(table);
+	table = fs.writeFileSync("tables.json", table, "UTF-8");
 	
 	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
 	

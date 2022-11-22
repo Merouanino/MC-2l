@@ -47,6 +47,11 @@ const actualiser_lobby = function (req, res, query) {
 
 	tables[choix].etat = false;
 
+	//on enregistre
+	
+	contenu = fs.readFileSync("tables.json", "UTF-8");
+    tables = JSON.parse(contenu);
+
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
