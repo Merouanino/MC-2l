@@ -17,6 +17,13 @@ const req_rafraichir = function (req,res,query);{
 	let table;
 	let resultat;
 	let somme;
+	let gains;
+	let mise;
+	let blackjack;
+	let carte = {};
+	carte["1"] = 1; carte["2"] = 2; carte["3"] = 3; carte["4"] = 4; carte["5"] = 5; carte["6"] = 6; carte["7"] = 7; carte["8"] = 8;carte["9"] = 9 ;carte["10"] = 10 ;carte["J"] = 10 ;carte["Q"] = 10;carte["K"] = 10 ;	
+	let couleur ={}
+	couleur["coeur"] : 1; couleur["carreau"] : 2; couleur["pique"] : 3; couleur["trefle"] : 4;
 
 	//Récupération du Contexte
 
@@ -24,8 +31,11 @@ const req_rafraichir = function (req,res,query);{
 	pathname = requete.pathname;
 	query = requete.query;
 
+	mise = Number(query.mise);
 	choix = query.choix;
-	pseudo = query.choix
+	pseudo = query.pseudo;
+	gains = 1.5 * mise;
+	blackjack = 2 * mise;
 
 	lobby = fs.readFileSync("lobby.json", "UTF-8");
 	lobby = JSON.parse(lobby);
@@ -38,7 +48,7 @@ const req_rafraichir = function (req,res,query);{
 
 	//Traitement
 	for(let i = 0; i < table[choix].joueurs.length; i++){
-		
+				
 	}
 	
 
