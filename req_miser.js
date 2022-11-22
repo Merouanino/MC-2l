@@ -21,7 +21,7 @@ const req_miser = function (req,res,query){
 	pathname = requete.pathname;
 	query = requete.query
 	
-	mise = query.mise;
+	mise = Number(query.mise);
 	pseudo = query.pseudo;
 	
 	lobby = fs.readFileSync("lobbys.json", "UTF-8");
@@ -32,8 +32,8 @@ const req_miser = function (req,res,query){
 
 	//Traitement
 	for (let i = 0; i < membres.length; i++){
-		if (membres[i].pseudo === pseudo){
-			membres[i].coins -= Number(mise);
+		if (membres[i].pseudo === pseudo && membres[i].coins > mise && membres[i].coins - mise > 0){
+			membres[i].coins -= mise;
 			
 		}
 	}
