@@ -42,12 +42,12 @@ const req_quitter_lobby = function (req, res, query) {
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
 	choix = query.choix;
-	joueur = lobby[choix].joueurs.indexOf(joueur);
+	joueur = lobby[choix].joueurs.indexOf(pseudo);
 	
 	//supprétion du joueur ayant quitter le lobby
 	
 	lobby[choix].joueurs.splice(joueur, 1);
-	
+
 	lobby = JSON.stringify(lobby);
 	lobby = fs.writeFileSync("lobbys.json", lobby, 'utf-8');
 	

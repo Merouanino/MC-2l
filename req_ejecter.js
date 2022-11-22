@@ -1,6 +1,5 @@
 "use strict";
 
-//const timer = require("./timer.js");
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require('url');
@@ -10,20 +9,39 @@ const req_ejecter = function(req, res, query){
     let pathname;
     let marqueurs;
     let page;
-	let time = 20;
+	let membres;
+	let tables;
+	let pseudo;
+	let choix;
+	let joueur;
 
-	/*setInterval(() =>{
-        time--;
-		console.log(time);
-    },1000);
-*/
-    	//si le timer est a 0, on ejecte le joueur dans la page accueil membre
-	if(time === 0){
-		page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
-	}
+	requete = url.parse(req.url, true);
+    pathname = requete.pathname;
+    query = requete.query;
+	
+	//Lecture du fichier json
+	
+	membres = fs.readFileSync("membres.json", "UTF-8");
+    membres = JSON.parse(membres);
 
-	marqueurs = {};
-    marqueurs.time = time;
+    tables = fs.readFileSync("tables.json", "UTF-8");
+    tables = JSON.parse(tables);
+
+	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
+
+	pseudo = query.pseudo;
+    choix = query.choix;
+	joueur = tables[choix].joueurs.indexOf(pseudo);
+	console.log(pseudo + joueur);
+
+    //supprétion du joueur ayant été kick de la table
+
+    tables[choix].joueurs.splice(joueur, 1);
+
+    tables = JSON.stringify(tables);
+    tables = fs.writeFileSync("tables.json", tables, 'utf-8');
+	
+	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
 		
 	page = nj.renderString(page,marqueurs);
 
