@@ -44,6 +44,9 @@ const req_quitter_lobby = require("./req_quitter_lobby");
 const req_actualiser_lobby = require("./req_actualiser_lobby");
 const req_miser = require("./req_miser.js");
 const req_rafraichir = require("./req_rafraichir.js");
+const req_ejecter = require("./req_ejecter.js");
+const req_quitter = require("./req_quitter.js");
+const req_continuer = require("./req_continuer.js");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 
@@ -88,6 +91,15 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_miser' :
 				req_miser(req,res,query);
+				break;
+			case '/req_ejecter' :
+                req_ejecter(req,res,query);
+                break;
+		   case '/req_quitter' :
+				req_quitter(req,res,query);
+				break;
+		   case '/req_continuer' :
+				req_continuer(req,res,query);
 				break;
 			default:
 				req_statique(req, res, query);
