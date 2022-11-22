@@ -8,7 +8,7 @@ let choix;
 
 setInterval(updateCountdown, 1000) // 1 sec
 
-_url = new URL(document.location);
+const _url = new URL(document.location);
 choix = _url.searchParams.get("choix");
 pseudo = _url.searchParams.get("pseudo");
 console.log(pseudo + choix);

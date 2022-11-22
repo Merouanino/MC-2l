@@ -31,6 +31,8 @@ const req_ejecter = function(req, res, query){
 
 	pseudo = query.pseudo;
     choix = query.choix;
+	console.log(pseudo);
+	console.log("manger");
 	joueur = tables[choix].joueurs.indexOf(pseudo);
 	console.log(pseudo + joueur);
 
@@ -40,6 +42,10 @@ const req_ejecter = function(req, res, query){
 
     tables = JSON.stringify(tables);
     tables = fs.writeFileSync("tables.json", tables, 'utf-8');
+   
+	marqueurs = {};
+    marqueurs.pseudo = pseudo;
+    marqueurs.choix = choix;
 	
 	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
 		
