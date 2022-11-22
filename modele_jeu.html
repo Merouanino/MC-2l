@@ -4,11 +4,13 @@
         <title>Jeu</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="modele_jeu.css">
+		<script defer src="timer.js"></script>
         <meta>
     </head>
 
     <body>
         <h2> Combien voulez vous miser ?</h2>
+		<div id="timer">0:20</div>
         <map name="Jeton_10">
             <area shape="circle" coords="60,60,60" href="/req_miser?choix={{choix}}&pseudo={{pseudo}}&mise=10">
         </map>
