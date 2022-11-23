@@ -14,6 +14,7 @@ const req_miser = function (req,res,query){
 	let membres;
 	let mise;
 	let coins;
+	let choix;
 
 	//Récupération du Contexte
 	
@@ -23,7 +24,8 @@ const req_miser = function (req,res,query){
 	
 	mise = Number(query.mise);
 	pseudo = query.pseudo;
-	
+	choix = query.choix;
+
 	lobby = fs.readFileSync("lobbys.json", "UTF-8");
 	lobby = JSON.parse(lobby);
 	
@@ -48,7 +50,7 @@ const req_miser = function (req,res,query){
 	let marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.mise = mise;
-
+	marqueurs.choix = choix;
 	page = fs.readFileSync(`modele_lobby_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
 
