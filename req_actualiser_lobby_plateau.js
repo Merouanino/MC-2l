@@ -32,11 +32,13 @@ const actualiser_lobby = function (req, res, query) {
     tables = JSON.parse(contenu);
 	
 	choix = query.choix;
+	let pseudo = query.pseudo;
+	let mise = query.mise;
 
 	//Vérifie que les joueurs sont là et récupère leur mise, si ts les joueurs du tab sont là on les envoit vers le plateau
 
 	joueur = tables[choix].joueurs;
-	joueur_mise = tables[choix].mises;
+	let joueur_mise = tables[choix].mises;
 	
 	//rajouter mise dans json
 	if(joueur.length === joueur_mise.length){
