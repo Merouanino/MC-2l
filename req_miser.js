@@ -31,12 +31,22 @@ const req_miser = function (req,res,query){
 	
 	membres = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(membres);
-
+	
+	tables = fs.readFileSync("tables.json", "UTF-8");
+	tables = JSON.parse(tables);
+	
 	//Traitement
+	
 	for (let i = 0; i < membres.length; i++){
 		if (membres[i].pseudo === pseudo && membres[i].coins > mise && membres[i].coins - mise > 0){
 			membres[i].coins -= mise;
 			
+		}
+	}
+	
+	for (let j = 0; j < membress.length; i++){
+		if (membres[j].pseudo === pseudo && tables[choix].etat === true){
+			tables[choix].mises.push(mise);
 		}
 	}
 
@@ -44,6 +54,9 @@ const req_miser = function (req,res,query){
 	
 	contenu = JSON.stringify(membres);
 	fs.writeFileSync("membres.json", contenu, "UTF-8");
+
+	contenu = JSON.stringify(tables);
+	fs.writeFileSync("tables.json", contenu, "UTF-8");
 
 	//Fabrication et envoi de la page HTML
 
