@@ -5,8 +5,6 @@ const nunjucks = require("nunjucks");
 const url = require("url");
 const fct = require("./fct_initialisation.js");
 const actualiser_lobby_plateau = function (req, res, query) {
-	let requete;
-	let pathname;
 	let contenu;
 	let lobby;
 	let membres;
@@ -18,6 +16,10 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	let joueur_mise;
 	let marqueurs;
 	let page;
+	let carte1;
+	let carte2;
+	let requete;
+	let pathname;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -58,6 +60,11 @@ const actualiser_lobby_plateau = function (req, res, query) {
     tables[choix].cartes = paquet;
     }   
     
+	//Distribution des cartes 
+
+	let c1 = fct.carte();
+	let c2 = fct.carte();
+
 	//on ne peut plus rejoindre la table car etat = false
 
 	tables[choix].etat = false;
@@ -71,7 +78,8 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
-
+	marqueurs.carte1 = c1;
+	marqueurs.carte2 = c2;
 	page = nunjucks.renderString(page, marqueurs);
 
     res.writeHead(200, { 'Content-Type': 'text/html' });
