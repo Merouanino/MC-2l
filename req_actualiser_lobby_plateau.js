@@ -4,7 +4,7 @@ const fs = require("fs");
 const nunjucks = require("nunjucks");
 const url = require("url");
 
-const actualiser_lobby = function (req, res, query) {
+const actualiser_lobby_plateau = function (req, res, query) {
 	let requete;
 	let pathname;
 	let contenu;
@@ -12,7 +12,10 @@ const actualiser_lobby = function (req, res, query) {
 	let membres;
 	let tables;
 	let choix;
+	let pseudo;
+	let mise;
 	let joueur;
+	let joueur_mise;
 	let marqueurs;
 	let page;
 
@@ -32,17 +35,18 @@ const actualiser_lobby = function (req, res, query) {
     tables = JSON.parse(contenu);
 	
 	choix = query.choix;
-	let pseudo = query.pseudo;
-	let mise = query.mise;
+	pseudo = query.pseudo;
 
 	//Vérifie que les joueurs sont là et récupère leur mise, si ts les joueurs du tab sont là on les envoit vers le plateau
 
 	joueur = tables[choix].joueurs;
-	let joueur_mise = tables[choix].mises;
+	joueur_mise = tables[choix].mises;
 	
 	//rajouter mise dans json
 	if(joueur.length === joueur_mise.length){
 		page = fs.readFileSync("modele_plateau.html", "utf-8");
+	}else{
+		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
 	}
 
 	//on ne peut plus rejoindre la table car etat = false
@@ -66,5 +70,5 @@ const actualiser_lobby = function (req, res, query) {
     res.end();
 };
 
-module.exports = actualiser_lobby;
+module.exports = actualiser_lobby_plateau;
 
