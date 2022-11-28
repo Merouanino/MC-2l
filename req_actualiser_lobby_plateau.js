@@ -3,7 +3,7 @@
 const fs = require("fs");
 const nunjucks = require("nunjucks");
 const url = require("url");
-
+const fct = require("./fct_initialisation.js");
 const actualiser_lobby_plateau = function (req, res, query) {
 	let requete;
 	let pathname;
@@ -51,6 +51,13 @@ const actualiser_lobby_plateau = function (req, res, query) {
 		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
 	}
 
+	//Initialisation des cartes
+    
+    if(tables[choix].cartes.length === 0){ 
+    let paquet = fct.carteInit()
+    tables[choix].cartes = paquet;
+    }   
+    
 	//on ne peut plus rejoindre la table car etat = false
 
 	tables[choix].etat = false;
@@ -58,36 +65,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	//on enregistre
 	
 	contenu = fs.readFileSync("tables.json", "UTF-8");
-    
 	tables = JSON.parse(contenu);
-    //Initialisation du paquet de cartes 
-    const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51];
-    function carte(c){
-		return Math.floor(Math.random() * 52);
-	};
-
-	function couleur(c){
-		return 
-	};
-    
-	function valeur(c){
-		let v;
-		if(c >= 10){
-			v = 10;
-		}
-		else{
-			v = c;
-		}
-		return v;
-	};
-
-	cartes = cartes.concat(cartes);
-    cartes = cartes.concat(cartes);
-    cartes = cartes.concat(cartes);
-    cartes = cartes.concat(cartes);
-    cartes = cartes.concat(cartes);
-
-    cartes.sort(()=> Math.random()-0.5);
 
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
