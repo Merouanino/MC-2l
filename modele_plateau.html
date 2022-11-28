@@ -14,10 +14,8 @@
                 <input type="submit" name="req_passer" value="passer">
             </form>
 
-            {% for carte in deck %}
             <img src="images/img_cartes/{{ carte1 }}.svg">
             <img src="images/img_cartes/{{ carte2 }}.svg">
-            {% for carte in deck %}
 
 <!--
         <div class="joueurs">
@@ -33,12 +31,12 @@
         </div>
         {% endfor %}
         </div>
--->
+
         {% if actif %}
         <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
         <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
         {% endif %}
-       
+  -->     
 
     </body>
 </html>
