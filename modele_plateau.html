@@ -13,72 +13,25 @@
                 <input type="submit" name="req_prendre" value="prendre"><br>
                 <input type="submit" name="req_passer" value="passer">
             </form>
+            <img src="images/img_cartes/{{ carte.random }}.svg">
+            {{ carte1 }}
+            {{ carte2 }}
             
-        <class="banque">
+<!--
+        <div class="joueurs">
+        {% for joueur in ?}    
+        <div class="joueur{{loop.index}}">
              {% for carte in deck %}
 
         	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
+            {{ carte1 }}
+            {{ carte2 }}
 
 		    {% endfor %}
-        </class>
-        <br>
-
-
-        <class="joueur_1">
-             {% for carte in cartes %}
-
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
-
-		    {% endfor %}
-        </class>
-        <br>
-
-        <class="joueur_2">
-             {% for carte in cartes %}
-
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
-
-		    {% endfor %}
-        </class>
-        <br>
-
-
-        <class="joueur_3">
-             {% for carte in cartes %}
-
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
-
-		    {% endfor %}
-        </class>
-        <br>
-
-
-        <class="joueur_4">
-             {% for carte in cartes %}
-
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
-
-		    {% endfor %}
-        </class>
-        <br>
-
-
-        <class="joueur_5">
-             {% for carte in cartes %}
-
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte }}
-
-		    {% endfor %}
-        </class>
-        <br>
-
-
+        </div>
+        {% endfor %}
+        </div>
+-->
         {% if actif %}
         <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
         <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
@@ -87,3 +40,4 @@
 
     </body>
 </html>
+
