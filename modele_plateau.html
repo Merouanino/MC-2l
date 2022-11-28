@@ -13,9 +13,12 @@
                 <input type="submit" name="req_prendre" value="prendre"><br>
                 <input type="submit" name="req_passer" value="passer">
             </form>
+
+            {% for carte in deck %}
             <img src="images/img_cartes/{{ carte.random }}.svg">
             {{ carte1 }}
             {{ carte2 }}
+            {% for carte in deck %}
             
 <!--
         <div class="joueurs">
