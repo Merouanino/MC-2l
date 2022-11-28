@@ -44,7 +44,7 @@ const req_quitter_lobby = function (req, res, query) {
 	choix = query.choix;
 	joueur = lobby[choix].joueurs.indexOf(joueur);
 	
-	//supprétion du joueur ayant quitter le lobby
+	//supprétion du joueur ayant quitter la page
 	
 	lobby[choix].joueurs.splice(joueur, 1);
 	

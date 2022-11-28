@@ -31,10 +31,7 @@ const req_ejecter = function(req, res, query){
 
 	pseudo = query.pseudo;
     choix = query.choix;
-	console.log(pseudo);
-	console.log("manger");
 	joueur = tables[choix].joueurs.indexOf(pseudo);
-	console.log(pseudo + joueur);
 
     //supprétion du joueur ayant été kick de la table
 

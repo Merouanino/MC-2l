@@ -41,6 +41,11 @@ const req_continuer = function (req, res, query) {
 
 	table[choix].etat = true;
 
+	//initialisation de la liste des mises
+    for(let i = 0; i < 4; i++){
+        tables[choix].mises.splice(0, 1);
+    }
+	
 	//on enregistre
 
 	table = JSON.stringify(table);
