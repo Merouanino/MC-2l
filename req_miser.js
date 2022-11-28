@@ -12,6 +12,7 @@ const req_miser = function (req,res,query){
 	let pseudo;
 	let lobby;
 	let membres;
+	let tables;
 	let mise;
 	let coins;
 	let choix;
@@ -44,7 +45,7 @@ const req_miser = function (req,res,query){
 		}
 	}
 	
-	for (let j = 0; j < membress.length; i++){
+	for (let j = 0; j < membres.length; j++){
 		if (membres[j].pseudo === pseudo && tables[choix].etat === true){
 			tables[choix].mises.push(mise);
 		}
