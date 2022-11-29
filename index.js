@@ -105,6 +105,9 @@ const traite_requete = function (req, res) {
 		   case '/req_actualiser_lobby_plateau' :
 				req_actualiser_lobby_plateau(req,res,query);
 				break;
+			case '/req_rafraichir' :
+				req_rafraichir(req,res,query);
+				break;
 			default:
 				req_statique(req, res, query);
 				break;
