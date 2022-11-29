@@ -14,15 +14,15 @@ const cartes = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,2
     };  
     
     function valeur(c){
-        let v;
-        if(c >= 10){
-            v = 10; 
-        }else if(c === 0){ 
-            v = 11; 
-        }else{
-            v = c + 1;
-        }
-        return v;
+        let v = [c % 13];
+		if(v == 1){
+			v = 11;
+		}else if(v <= 10){
+			return v;
+		}else{
+			v = 10;
+		}
+		return v;
     };  
 
     
