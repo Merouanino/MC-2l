@@ -15,18 +15,12 @@
                 <input type="submit" name="req_passer" value="passer">
             </form>
 
-            <img src="./52_cartes/{{carte1}}.svg">
-            <img src="./52_cartes/{{carte2}}.svg">
-
-<!--
         <div class="joueurs">
-        {% for joueur in ?}    
+        {% for joueur in joueurs %}    
         <div class="joueur{{loop.index}}">
-             {% for carte in deck %}
+             {% for carte in cartes %}
 
-        	<img src="images/img_cartes/{{ carte.random }}.svg">
-            {{ carte1 }}
-            {{ carte2 }}
+        	<img src="images/img_cartes/{{ carte }}.svg">           
 
 		    {% endfor %}
         </div>
@@ -37,8 +31,7 @@
         <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
         <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
         {% endif %}
-  -->     
-
+    
     </body>
 </html>
 

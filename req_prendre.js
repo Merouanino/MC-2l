@@ -3,7 +3,7 @@ const { table } = require("console");
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require("url");
-
+const fct = require("./fct_initialisation.js")
 const req_prendre = function (req,res,query){
     let page;
     let contenu;
@@ -13,6 +13,8 @@ const req_prendre = function (req,res,query){
     let carte;
     let choix;
     let marqueurs;
+    let paquet;
+
     //Récupération du Contexte
     requete = url.parse(req.url, true);
 	pathname = requete.pathname;
@@ -23,15 +25,20 @@ const req_prendre = function (req,res,query){
 
     tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
+    
     page = fs.readFileSync("modele_plateau.html", "utf-8")
 
     //Traitement
 
-    carte_random = Math.floor(Math.random() * 52)+1;
-    tables[choix].cartes.splice(carte_random, 1);
+    carte_random = fct.carte()
+    tables[choix].cartes.splice(carte.indexOf(carte_random), 1);
 
-    if(tables[choix].cartes.length < 3*52){
+    carte_random_couleur = fct.couleur(carte_random)
+    
 
+    if(tables[choix].cartes.length < 3 * 52 ){
+        let paquet = fct.carteInit()
+        tables[choix].cartes = paquet;
     }
     
 

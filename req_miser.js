@@ -12,13 +12,10 @@ const req_miser = function (req,res,query){
 	let pseudo;
 	let lobby;
 	let membres;
-	let tables;
 	let mise;
 	let coins;
 	let choix;
-	let joueur;
-	let continuer;
-	let compteur = 0;
+	let tables;
 
 	//Récupération du Contexte
 	
@@ -38,14 +35,7 @@ const req_miser = function (req,res,query){
 	
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
-
-	//initialisation de la liste des mises
-	for(let i = 0; i < 4; i++){
-		tables[choix].mises.splice(0, 1);
-		tables[choix].mises.push(null);
-	}
-
-
+	
 	//Traitement
 	
 	for (let i = 0; i < membres.length; i++){
@@ -55,20 +45,11 @@ const req_miser = function (req,res,query){
 		}
 	}
 	
-	//ajoute la mise des joueurs 
-
-	for(let i = 0; i < 4; i++){
-        tables[choix].mises.push(null);
-    }
-
-	for (let j = 0; j < membres.length; j++){
+	for (let j = 0; j < membress.length; i++){
 		if (membres[j].pseudo === pseudo && tables[choix].etat === true){
-			tables[choix].mises.splice(compteur, 1, mise);
-			//tables[choix].mises.push(mise);
-			compteur++;
+			tables[choix].mises.push(mise);
 		}
 	}
-
 
 	//Mémorisation du Contexte
 	
@@ -93,3 +74,4 @@ const req_miser = function (req,res,query){
 
 };
 module.exports = req_miser;
+
