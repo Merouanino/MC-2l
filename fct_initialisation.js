@@ -30,7 +30,7 @@ const cartes = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,2
         return Math.floor(Math.random() * cartes.length);
 	};
 
-	function carteInit(cartes){
+	function carteInit(){
     let c = [];
 	c = c.concat(cartes);
     c = c.concat(cartes);
@@ -40,7 +40,7 @@ const cartes = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,2
     c = c.concat(cartes);
 
     c.sort(()=> Math.random()-0.5);
-	
+	return c;	
 	};
 module.exports = {
 	carte : carte,
