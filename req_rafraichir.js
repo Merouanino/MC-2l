@@ -3,11 +3,11 @@
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require('url');
-//Concat*6 + sortof(mathrandom - 0,5) 
+const fct = require("./fct_initialisation.js");
 
 const req_rafraichir = function (req,res,query){
 	
-	let page = read.FileSync(`modele_plateau.html`, "UTF-8");
+	let page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
 	let contenu;
 	let requete;
 	let pathname;
@@ -15,9 +15,9 @@ const req_rafraichir = function (req,res,query){
 	let pseudo;
 	let lobby;
 	let membres;
-	let table;
+	let tables;
 	let resultat;
-	let somme;
+	let somme = 0;
 	let gains;
 	let mise;
 	let blackjack;
@@ -29,43 +29,57 @@ const req_rafraichir = function (req,res,query){
 	pathname = requete.pathname;
 	query = requete.query;
 
-	mise = Number(query.mise);
-	choix = query.choix;
-	pseudo = query.pseudo;
-	gains = 1.5 * mise;
-	blackjack = 2 * mise;
-
-	lobby = fs.readFileSync("lobby.json", "UTF-8");
+	lobby = fs.readFileSync("lobbys.json", "UTF-8");
 	lobby = JSON.parse(lobby);
 
 	membres = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(membres);
 
-	table = fs.readFileSync("tables.json", "UTF-8");
-	table = JSON.parse(table);
+	tables = fs.readFileSync("tables.json", "UTF-8");
+	tables = JSON.parse(tables);
+	
+	//mise = tables[choix].mises;
+	choix = query.choix;
+	pseudo = query.pseudo;
+	
 
 	//Traitement
-	for(let i = 0; i < table[choix].joueurs.length; i++){
-		if(membres.pseudo[i] === pseudo && table[choix].etat === true){
+	
+	//Calcul des mains
 
+	for(let i = 0; i < tables[choix].joueurs.length; i++){
+		if(tables[choix].joueurs[i] !== null){
+			for(let j = 0; j < tables[choix].main[i].length; j++){
+				somme += Number(fct.valeur(tables[choix].main[i][j]));
+				console.log(somme);
+			}
 		}
 	}
 	
+	//Le joueur actif 
+
+	for(let k = 0; k < tables[choix].joueurs.length; k++){
+		if(tables[choix].joueurs[k] !== null){
+			tables[choix].actif.push(k);
+		}
+	}
 
 	//Mémorisation du Contexte
 
+	tables = JSON.stringify(tables, null, "\t");
+	fs.writeFileSync("tables.json", tables, "utf-8");
 
 	//Fabrication et envoi de la page HTML
 
 	let marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
-	marqueurs.table = table;
-	marqueurs.actif = tables[choix].joueur[tables[choix].actif] === query.pseudo;
+	//marqueurs.actif = tables[choix].actif === query.pseudo;
 	page = nj.renderString(page,marqueurs);
 	
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });
 	res.write(page);
 	res.end();
 };
+
 module.exports = req_rafraichir;
