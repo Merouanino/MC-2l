@@ -16,8 +16,6 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	let joueur_mise;
 	let marqueurs;
 	let page;
-	let c1;
-	let c2;
 	let requete;
 	let pathname;
 	let cartes;
