@@ -4,6 +4,7 @@
 
         <title>HI </title>
         <meta charset="utf-8">
+        <meta http-equiv="refresh" content="5; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">
         <link rel="stylesheet" type="text/css" href="modele_plateau.css">
         
     </head>
@@ -15,17 +16,10 @@
                 <input type="submit" name="req_passer" value="passer">
             </form>
 
-        <div class="joueurs">
-        {% for joueur in joueurs %}    
-        <div class="joueur{{loop.index}}">
-            {% for carte in cartes %}
 
-        	<img src="images/img_cartes/{{ carte }}.svg">           
+        	<img src="52_cartes/{{ carte }}.svg">           
 
-		    {% endfor %}
-        </div>
-        {% endfor %}
-        </div>
+		 
 
         {% if actif %}
         <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
