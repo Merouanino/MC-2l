@@ -13,7 +13,9 @@ const req_prendre = function (req,res,query){
     let carte;
     let choix;
     let marqueurs;
-    let paquet;
+    let tables;
+    let carte_random;
+    let cartes;
 
     //Récupération du Contexte
     requete = url.parse(req.url, true);
@@ -31,10 +33,14 @@ const req_prendre = function (req,res,query){
     //Traitement
 
     carte_random = fct.carte()
-    tables[choix].cartes.splice(carte.indexOf(carte_random), 1);
+    tables[choix].cartes.splice(tables[choix].cartes.indexOf(carte_random), 1);
 
-    carte_random_couleur = fct.couleur(carte_random)
-    
+    for(let i = 0; i < tables[choix].joueurs.length; i++){
+		if(tables[choix].joueurs[i] !== null){
+			let c = tables[choix].main[i].push(carte_random);
+				
+		}
+	}
 
     if(tables[choix].cartes.length < 3 * 52 ){
         let paquet = fct.carteInit()
@@ -43,13 +49,15 @@ const req_prendre = function (req,res,query){
     
 
     //Mémorisation du Contexte
-    contenu = JSON.stringify("table.json");
-    fs.writeFileSync("tables.json", contenu,"utf-8")
+    contenu = JSON.stringify(tables);
+    fs.writeFileSync("tables.json", contenu, "utf-8")
 
 
     //Fabrication et envoi de la page HTML
     marqueurs = {};
-    marqueurs.carte = carte_random;
+    marqueurs.mains = tables[choix].main;
+    marqueurs.pseudo = pseudo;
+	marqueurs.choix = choix;
 
     page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);

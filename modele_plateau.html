@@ -4,26 +4,34 @@
 
         <title>HI </title>
         <meta charset="utf-8">
-        <meta http-equiv="refresh" content="5; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">
+        <!-- <meta http-equiv="refresh" content="5; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}"> -->
         <link rel="stylesheet" type="text/css" href="modele_plateau.css">
         
     </head>
 
     <body>
 
-            <form action="" method="get">
-                <input type="submit" name="req_prendre" value="prendre"><br>
-                <input type="submit" name="req_passer" value="passer">
-            </form>
+        <a href="/req_prendre?choix={{choix}}&pseudo={{pseudo}}"><button>Prendre</button></a>
+        <a href="/req_passer?choix={{choix}}&pseudo={{pseudo}}"><button>passer</button></a>
 
+            <div class="mains">
+                {% for main in mains %}
+                <br>
+                    <div class="main">
+                        {% for carte in main %}
+                            <img src="52_cartes/{{carte}}.svg"> 
+                        {% endfor %}
+                    </div>
 
-        	<img src="52_cartes/{{ carte }}.svg">           
+                {% endfor %}
+            </div>
+    
 
 		 
 
         {% if actif %}
-        <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
-        <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
+            <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
+            <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
         {% endif %}
     
     </body>
