@@ -16,10 +16,11 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	let joueur_mise;
 	let marqueurs;
 	let page;
-	let carte1;
-	let carte2;
+	let c1;
+	let c2;
 	let requete;
 	let pathname;
+	let cartes;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -38,6 +39,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	
 	choix = query.choix;
 	pseudo = query.pseudo;
+	cartes = tables[choix].main;
 
 	//Vérifie que les joueurs sont là et récupère leur mise, si ts les joueurs du tab sont là on les envoit vers le plateau
 
@@ -58,28 +60,29 @@ const actualiser_lobby_plateau = function (req, res, query) {
     if(tables[choix].cartes.length === 0){ 
     let paquet = fct.carteInit()
     tables[choix].cartes = paquet;
-    }   
+	}   
     
 	//Distribution des cartes 
-
-	let c1 = fct.carte();
-	let c2 = fct.carte();
-
+	for(let i = 0; i < tables[choix].joueurs.length; i++){
+		if(tables[choix].joueurs[i] !== null){
+			let c = tables[choix].main[i].push(fct.carte(),fct.carte());
+				
+		}
+	}
 	//on ne peut plus rejoindre la table car etat = false
 
 	tables[choix].etat = false;
-
+		
 	//on enregistre
 	
-	contenu = fs.readFileSync("tables.json", "UTF-8");
-	tables = JSON.parse(contenu);
-
+	contenu = JSON.stringify(tables, null, "\t");
+	fs.writeFileSync("tables.json",contenu,"UTF-8");
+	
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
-	marqueurs.carte1 = c1;
-	marqueurs.carte2 = c2;
+	marqueurs.carte = cartes;
 	page = nunjucks.renderString(page, marqueurs);
 
     res.writeHead(200, { 'Content-Type': 'text/html' });
