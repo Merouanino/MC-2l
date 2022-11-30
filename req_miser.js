@@ -18,7 +18,7 @@ const req_miser = function (req,res,query){
 	let choix;
 	let joueur;
 	let continuer;
-	let compteur = 0;
+	let indice_joueur;
 
 	//Récupération du Contexte
 	
@@ -39,11 +39,12 @@ const req_miser = function (req,res,query){
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
 
+	//Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
+
 	indice_pseudo = tables[choix].joueurs.indexOf(pseudo);
 
 	//initialisation de la liste des mises
 	for(let i = 0; i < 4; i++){
-		tables[choix].mises.splice(0, 1);
 		tables[choix].mises.push(null);
 	}
 
