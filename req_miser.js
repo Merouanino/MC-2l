@@ -18,7 +18,7 @@ const req_miser = function (req,res,query){
 	let choix;
 	let joueur;
 	let continuer;
-	let indice_joueur;
+	let indice_pseudo;
 
 	//Récupération du Contexte
 	
