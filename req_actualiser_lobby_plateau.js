@@ -48,25 +48,25 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	
 	//rajouter mise dans json
 	if(joueur.length === joueur_mise.length){
-		page = fs.readFileSync("modele_plateau.html", "utf-8");
-	}else{
-		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
-	}
-
+	
 	//Initialisation des cartes
     
     if(tables[choix].cartes.length === 0){ 
-    let paquet = fct.carteInit()
-    tables[choix].cartes = paquet;
+    	let paquet = fct.carteInit()
+    	tables[choix].cartes = paquet;
 	}   
     
 	//Distribution des cartes 
 	for(let i = 0; i < tables[choix].joueurs.length; i++){
 		if(tables[choix].joueurs[i] !== null){
 			let c = tables[choix].main[i].push(fct.carte(),fct.carte());
-				
 		}
 	}
+		page = fs.readFileSync("modele_plateau.html", "utf-8");
+	}else{
+		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
+	}
+
 	//on ne peut plus rejoindre la table car etat = false
 
 	tables[choix].etat = false;
