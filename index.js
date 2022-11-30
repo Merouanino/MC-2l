@@ -50,6 +50,7 @@ const req_quitter = require("./req_quitter.js");
 const req_continuer = require("./req_continuer.js");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
+const req_prendre = require("./req_prendre.js");
 
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
 
@@ -107,6 +108,9 @@ const traite_requete = function (req, res) {
 				break;
 			case '/req_rafraichir' :
 				req_rafraichir(req,res,query);
+				break;
+			case '/req_prendre' :
+				req_prendre(req,res,query);
 				break;
 			default:
 				req_statique(req, res, query);
