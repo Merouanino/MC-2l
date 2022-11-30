@@ -27,7 +27,7 @@ const req_rafraichir = function (req,res,query){
 	let indice;
 	let indice_pseudo;
 	let gain;
-
+	let i;
 	//Récupération du Contexte
 
 	requete = url.parse(req.url, true);
