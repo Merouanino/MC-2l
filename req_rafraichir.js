@@ -111,7 +111,8 @@ const req_rafraichir = function (req,res,query){
 		}else if(croupier === somme){
 			membres[indice].coins += gain;
 		}
-
+	}
+	
 	//Mémorisation du Contexte
 
 	tables = JSON.stringify(tables, null, "\t");
@@ -130,6 +131,7 @@ const req_rafraichir = function (req,res,query){
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });
 	res.write(page);
 	res.end();
+
 };
 
 module.exports = req_rafraichir;
