@@ -15,9 +15,9 @@ try{
 } catch (err) {
 	if (err.code === "ENOENT"){
 		fs.writeFileSync("tables.json", JSON.stringify([
-			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : [], "banque" : []},
-			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : [], "banque" : []},
-			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : [], "banque" : []}
+			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : 0, "banque" : []},
+			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : 0, "banque" : []},
+			{"joueurs" : [],"etat" : true, "mises" : [], "cartes" : [], "main" : [[], [], [], [], []], "actif" : 0, "banque" : []}
 		]), "UTF-8");
 	}
 }
