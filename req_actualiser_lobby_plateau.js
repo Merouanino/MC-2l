@@ -86,6 +86,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
 	marqueurs.mains = cartes;
+	marqueurs.banque = tables[choix].banque;
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });
