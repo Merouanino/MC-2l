@@ -25,11 +25,11 @@ try{
 	fs.accessSync("lobbys.json", fs.constants.R_OK);
 } catch (err) {
 	if (err.code === "ENOENT"){
-	fs.writeFileSync("lobbys.json", JSON.stringify([
-		{"joueurs" : [],"choix" : [0], "min" : 20},
-		{"joueurs" : [],"choix" : [1], "min" : 50},
-		{"joueurs" : [],"choix" : [2], "min" : 100}
-	]), "UTF-8");
+		fs.writeFileSync("lobbys.json", JSON.stringify([
+			{"joueurs" : [],"choix" : [0], "min" : 20},
+			{"joueurs" : [],"choix" : [1], "min" : 50},
+			{"joueurs" : [],"choix" : [2], "min" : 100}
+		]), "UTF-8");
 	}
 }
 
@@ -51,6 +51,7 @@ const req_continuer = require("./req_continuer.js");
 const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 const req_prendre = require("./req_prendre.js");
+const req_passer = require("./req_passer.js");
 
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
 
@@ -69,52 +70,56 @@ const traite_requete = function (req, res) {
 
 	try {
 		switch (pathname) {
-			case '/':
-			case '/req_commencer':
-				req_commencer(req, res, query);
-				break;
-			case '/req_afficher_formulaire_inscription':
-				req_afficher_formulaire_inscription(req, res, query);
-				break;
-			case '/req_inscrire':
-				req_inscrire(req, res, query);
-				break;
-			case '/req_identifier':
-				req_identifier(req, res, query);
-				break;
-			case '/req_rejoindre' : 
-				req_rejoindre(req,res,query);
-				break;
-			case '/req_actualiser_lobby' : 
-				req_actualiser_lobby(req,res,query);
-				break;
-			case '/req_quitter_lobby' :
-				req_quitter_lobby(req,res,query);
-				break;
-			case '/req_miser' :
-				req_miser(req,res,query);
-				break;
-			case '/req_ejecter' :
-                req_ejecter(req,res,query);
-                break;
+		case '/':
+		case '/req_commencer':
+			req_commencer(req, res, query);
+			break;
+		case '/req_afficher_formulaire_inscription':
+			req_afficher_formulaire_inscription(req, res, query);
+			break;
+		case '/req_inscrire':
+			req_inscrire(req, res, query);
+			break;
+		case '/req_identifier':
+			req_identifier(req, res, query);
+			break;
+		case '/req_rejoindre' : 
+			req_rejoindre(req,res,query);
+			break;
+		case '/req_actualiser_lobby' : 
+			req_actualiser_lobby(req,res,query);
+			break;
+		case '/req_quitter_lobby' :
+			req_quitter_lobby(req,res,query);
+			break;
+		case '/req_miser' :
+			req_miser(req,res,query);
+			break;
+		case '/req_ejecter' :
+			req_ejecter(req,res,query);
+			break;
 		   case '/req_quitter' :
-				req_quitter(req,res,query);
-				break;
+			req_quitter(req,res,query);
+			break;
 		   case '/req_continuer' :
-				req_continuer(req,res,query);
-				break;
+			req_continuer(req,res,query);
+			break;
 		   case '/req_actualiser_lobby_plateau' :
-				req_actualiser_lobby_plateau(req,res,query);
-				break;
-			case '/req_rafraichir' :
-				req_rafraichir(req,res,query);
-				break;
-			case '/req_prendre' :
-				req_prendre(req,res,query);
-				break;
-			default:
-				req_statique(req, res, query);
-				break;
+			req_actualiser_lobby_plateau(req,res,query);
+			break;
+		case '/req_rafraichir' :
+			req_rafraichir(req,res,query);
+			break;
+		case '/req_prendre' :
+			req_prendre(req,res,query);
+			break;
+		case '/req_passer' :
+			req_passer(req,res,query);
+			break;
+		
+		default:
+			req_statique(req, res, query);
+			break;
 		}
 	} catch (e) {
 		console.log('Erreur : ' + e.stack);

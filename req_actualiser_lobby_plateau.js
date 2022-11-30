@@ -22,19 +22,19 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	let cartes;
 
 	requete = url.parse(req.url, true);
-    pathname = requete.pathname;
-    query = requete.query;
+	pathname = requete.pathname;
+	query = requete.query;
 	
 	//Récupération du contexte
 	
 	contenu = fs.readFileSync("lobbys.json", "UTF-8");
-    lobby = JSON.parse(contenu);
+	lobby = JSON.parse(contenu);
 	
 	contenu = fs.readFileSync("membres.json", "UTF-8");
-    membres = JSON.parse(contenu);
+	membres = JSON.parse(contenu);
 	
 	contenu = fs.readFileSync("tables.json", "UTF-8");
-    tables = JSON.parse(contenu);
+	tables = JSON.parse(contenu);
 	
 	choix = query.choix;
 	pseudo = query.pseudo;
@@ -57,12 +57,16 @@ const actualiser_lobby_plateau = function (req, res, query) {
 		}   
     
 		//Distribution des cartes 
-		for(let i = 0; i < tables[choix].joueurs.length; i++){
-			if(tables[choix].joueurs[i] !== null){
-				let c = tables[choix].main[i].push(fct.carte(),fct.carte());
+		console.log(tables[choix].main);
+		if(tables[choix].main[0].length <= 0){
+			for(let i = 0; i < tables[choix].joueurs.length; i++){
+				if(tables[choix].joueurs[i] !== null){
+					let c = tables[choix].main[i].push(fct.carte(),fct.carte());
+				}
 			}
+	
+			tables[choix].banque.push(fct.carte(),fct.carte());
 		}
-		tables[choix].banque.push(fct.carte(),fct.carte());
 		page = fs.readFileSync("modele_plateau.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");
@@ -84,9 +88,9 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	marqueurs.mains = cartes;
 	page = nunjucks.renderString(page, marqueurs);
 
-    res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(page);
-    res.end();
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write(page);
+	res.end();
 };
 
 module.exports = actualiser_lobby_plateau;

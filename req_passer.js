@@ -29,11 +29,9 @@ const req_passer = function (req,res,query){
 	page = fs.readFileSync("modele_plateau.html", "utf-8");
 
 	//Traitement
-	for(let i = 0 ; i > tables[choix].joueurs.length; i++ ){
-		tables[choix].actif += 1;
-	}
 	
-	
+	tables[choix].actif += 1;
+
 	//Mémorisation du Contexte
 
 	contenu = JSON.stringify(tables);
@@ -44,6 +42,7 @@ const req_passer = function (req,res,query){
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.actif = tables[choix].actif;
+	marqueurs.mains = tables[choix].main;
 
 	page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
@@ -53,6 +52,6 @@ const req_passer = function (req,res,query){
 	res.end();
 
 };  
-module.exports = req_prendre;
+module.exports = req_passer;
 
 
