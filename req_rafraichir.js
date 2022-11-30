@@ -17,11 +17,13 @@ const req_rafraichir = function (req,res,query){
 	let membres;
 	let tables;
 	let resultat;
-	let somme = 0;
+	let somme = [];
 	let gains;
 	let mise;
+	let croupier = 0;
 	let blackjack;
 	let actif;
+	let marqueurs = {};
 
 	//Récupération du Contexte
 
@@ -46,24 +48,30 @@ const req_rafraichir = function (req,res,query){
 	//Traitement
 	
 	//Calcul des mains
-
+	
+	for(let m = 0; m < tables[choix].banque.length; m++){
+		croupier += Number(fct.valeur(tables[choix].banque[m]));
+		console.log(croupier);
+	}
+	
 	for(let i = 0; i < tables[choix].joueurs.length; i++){
 		if(tables[choix].joueurs[i] !== null){
 			for(let j = 0; j < tables[choix].main[i].length; j++){
-				somme += Number(fct.valeur(tables[choix].main[i][j]));
+				somme[i] += Number(fct.valeur(tables[choix].main[i][j]));
 				console.log(somme);
+				
 			}
 		}
 	}
 	
-	//Le joueur actif 
+	
+	//Le joueur qui a la main
 
-	for(let k = 0; k < tables[choix].joueurs.length; k++){
-		if(tables[choix].joueurs[k] !== null){
-			tables[choix].actif.push(k);
-		}
+	for(let l = 0; l < tables[choix].actif; l++){
+		marqueurs.actif = tables[choix].actif;
+		marqueurs.mains = tables[choix].main[l];
 	}
-
+	
 	//Mémorisation du Contexte
 
 	tables = JSON.stringify(tables, null, "\t");
@@ -71,7 +79,6 @@ const req_rafraichir = function (req,res,query){
 
 	//Fabrication et envoi de la page HTML
 
-	let marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	//marqueurs.actif = tables[choix].actif === query.pseudo;
