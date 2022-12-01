@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 //La requête qui gère la progression du jeu dans la table
 "use strict";
 const fs = require("fs");
@@ -28,6 +29,7 @@ const req_rafraichir = function (req,res,query){
 	let indice_pseudo;
 	let gain;
 	let i;
+	let pseudo_actif = [];
 	//Récupération du Contexte
 
 	requete = url.parse(req.url, true);
@@ -82,18 +84,22 @@ const req_rafraichir = function (req,res,query){
 		tables[choix].banque.push(fct.valeur());
 	}
 
-	//Les conditions de victoire
-	
-	//recup l'indice du joueur dans membres.json
-	for(let n = 0; n < membres.length; i++){
-		if(membres[n].pseudo === pseudo){
-			indice = n;
-		}
+	//Le tour de la banque
+	// if(tables[choix].actif == 0 && tables[choix].joueurs.length > 1){
+	if(tables[choix].actif == tables[choix].joueurs.length - 1){
+		
 	}
 	
-	//recup l'indice du joueur qui se trouve dans tables.json (meme indice que pour la mise)
-	indice_pseudo = tables[choix].joueurs.indexOf(indice);
-
+	//recup l'indice du joueur dans membres.json
+	for(let n = 0; n < membres.length; n++){
+			if(membres[n].pseudo === pseudo){
+				indice = n;
+				marqueurs.pseudo_actif = indice;
+				}
+		}
+	
+	
+	
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[indice_pseudo];
 
