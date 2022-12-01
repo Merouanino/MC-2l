@@ -26,7 +26,7 @@ const req_rafraichir = function (req,res,query){
 	let actif;
 	let marqueurs = {};
 	let indice;
-	let indice_pseudo;
+	let id_joueur;
 	let gain;
 	let i;
 	let pseudo_actif = [];
@@ -53,11 +53,12 @@ const req_rafraichir = function (req,res,query){
 	//Traitement
 	
 	//Calcul des mains
-	
+function calcul(){	
 	for(let m = 0; m < tables[choix].banque.length; m++){
 		croupier += Number(fct.valeur(tables[choix].banque[m]));
 		console.log("1", croupier);
 	}
+}
 		
 	for(let i = 0; i < tables[choix].joueurs.length; i++){
 		if(tables[choix].joueurs[i] !== null){
@@ -84,16 +85,20 @@ const req_rafraichir = function (req,res,query){
 	// if(tables[choix].actif == 0 && tables[choix].joueurs.length > 1){
     if(tables[choix].joueurs.filter(el => el === null).length === 5 - tables[choix].actif){
 		while(croupier < 17){
-			tables[choix].banque.push(fct.cartes());
+			tables[choix].banque.push(fct.carte());
 		}
 	}
+
+	console.log(pseudo);
 	
 	//recup l'indice du joueur dans membres.json
-	marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === query.pseudo;
-	console.log(marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === query.pseudo);
+	marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
+	//console.log(marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === query.pseudo);
+
+	//id_joueur = tables[choix].joueurs.indexOf(membres[tables[choix].joueurs[tables[choix].actif    ]].pseudo);
 
 	//recup la valeur de la mise du joueur 
-	gain = tables[choix].mises[indice_pseudo];
+	gain = tables[choix].mises[id_joueur];
 
 
 	//verification
