@@ -18,7 +18,7 @@ const req_rafraichir = function (req,res,query){
 	let membres;
 	let tables;
 	let resultat;
-	let somme = [];
+	let somme = [0,0,0,0,0];
 	let gains;
 	let mise;
 	let croupier = 0;
@@ -30,6 +30,7 @@ const req_rafraichir = function (req,res,query){
 	let gain;
 	let i;
 	let pseudo_actif = [];
+
 	//Récupération du Contexte
 
 	requete = url.parse(req.url, true);
@@ -44,7 +45,7 @@ const req_rafraichir = function (req,res,query){
 
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
-	
+
 	//mise = tables[choix].mises;
 	choix = query.choix;
 	pseudo = query.pseudo;
@@ -54,18 +55,15 @@ const req_rafraichir = function (req,res,query){
 	//Calcul des mains
 	
 	for(let m = 0; m < tables[choix].banque.length; m++){
-		for(let o = 0; o < tables[choix].banque[m].length; o++){
-			croupier += Number(fct.valeur(tables[choix].banque[m][o]));
-			console.log(croupier);
-		}
+		croupier += Number(fct.valeur(tables[choix].banque[m]));
+		console.log("1", croupier);
 	}
 		
 	for(let i = 0; i < tables[choix].joueurs.length; i++){
 		if(tables[choix].joueurs[i] !== null){
 			for(let j = 0; j < tables[choix].main[i].length; j++){
 				somme[i] += Number(fct.valeur(tables[choix].main[i][j]));
-				console.log(somme);
-				
+			console.log("2", somme);
 			}
 		}
 	}
@@ -73,10 +71,8 @@ const req_rafraichir = function (req,res,query){
 	
 	//Le joueur qui a la main
 
-	for(let l = 0; l < tables[choix].actif; l++){
-		marqueurs.actif = tables[choix].actif;
-		marqueurs.mains = tables[choix].main[l];
-	}
+	marqueurs.actif = tables[choix].actif;
+	marqueurs.mains = tables[choix].main;
 	
 	//Les cartes de la banque
 
@@ -86,20 +82,16 @@ const req_rafraichir = function (req,res,query){
 
 	//Le tour de la banque
 	// if(tables[choix].actif == 0 && tables[choix].joueurs.length > 1){
-	if(tables[choix].actif == tables[choix].joueurs.length - 1){
-		
+    if(tables[choix].joueurs.filter(el => el === null).length === 5 - tables[choix].actif){
+		while(croupier < 17){
+			tables[choix].banque.push(fct.cartes());
+		}
 	}
 	
 	//recup l'indice du joueur dans membres.json
-	for(let n = 0; n < membres.length; n++){
-			if(membres[n].pseudo === pseudo){
-				indice = n;
-				marqueurs.pseudo_actif = indice;
-				}
-		}
-	
-	
-	
+	marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === query.pseudo;
+	console.log(marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === query.pseudo);
+
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[indice_pseudo];
 
@@ -121,17 +113,18 @@ const req_rafraichir = function (req,res,query){
 	
 	//Mémorisation du Contexte
 
-	tables = JSON.stringify(tables, null, "\t");
-	fs.writeFileSync("tables.json", tables, "utf-8");
+	contenu = JSON.stringify(tables, null, "\t");
+	fs.writeFileSync("tables.json", contenu, "utf-8");
 
-	membres = JSON.stringify(membres, null, "\t");
-	fs.writeFileSync("membres.json", membres, "UTF-8");
+	contenu = JSON.stringify(membres, null, "\t");
+	fs.writeFileSync("membres.json", contenu, "UTF-8");
 	
 	//Fabrication et envoi de la page HTML
 
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
-	//marqueurs.actif = tables[choix].actif === query.pseudo;
+	marqueurs.mise = mise;
+	marqueurs.banque = tables[choix].banque;
 	page = nj.renderString(page,marqueurs);
 	
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });

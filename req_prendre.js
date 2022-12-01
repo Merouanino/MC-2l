@@ -55,6 +55,7 @@ const req_prendre = function (req,res,query){
 
 	//Fabrication et envoi de la page HTML
 	marqueurs = {};
+	marqueurs.banque = tables[choix].banque;
 	marqueurs.mains = tables[choix].main;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;

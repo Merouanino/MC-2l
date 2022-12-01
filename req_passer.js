@@ -41,6 +41,7 @@ const req_passer = function (req,res,query){
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
+	marqueurs.banque = tables[choix].banque;
 	marqueurs.actif = tables[choix].actif;
 	marqueurs.mains = tables[choix].main;
 
