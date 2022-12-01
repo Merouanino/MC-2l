@@ -5,7 +5,6 @@ img {
     height : auto;
     }
 
-.banque{
-    
+.mains:nth-child() {
+    display: flex;
 }
-
