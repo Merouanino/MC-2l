@@ -98,13 +98,13 @@ const traite_requete = function (req, res) {
 		case '/req_ejecter' :
 			req_ejecter(req,res,query);
 			break;
-		   case '/req_quitter' :
+		case '/req_quitter' :
 			req_quitter(req,res,query);
 			break;
-		   case '/req_continuer' :
+		case '/req_continuer' :
 			req_continuer(req,res,query);
 			break;
-		   case '/req_actualiser_lobby_plateau' :
+		case '/req_actualiser_lobby_plateau' :
 			req_actualiser_lobby_plateau(req,res,query);
 			break;
 		case '/req_rafraichir' :

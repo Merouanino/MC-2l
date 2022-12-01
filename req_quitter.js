@@ -7,7 +7,7 @@ const url = require('url');
 const req_quitter_lobby = function (req, res, query) {
 	let requete;
 	let pathname;
-    let marqueurs;
+	let marqueurs;
 	let page;
 	let tables;
 	let pseudo;
@@ -16,8 +16,8 @@ const req_quitter_lobby = function (req, res, query) {
 
 
 	requete = url.parse(req.url, true);
-    pathname = requete.pathname;
-    query = requete.query;
+	pathname = requete.pathname;
+	query = requete.query;
 
 	//Lecture du fichier json 
 		
@@ -25,7 +25,7 @@ const req_quitter_lobby = function (req, res, query) {
 	members = JSON.parse(members);
 
 	tables = fs.readFileSync("tables.json", "UTF-8");
-    tables = JSON.parse(tables);
+	tables = JSON.parse(tables);
 
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
@@ -49,8 +49,8 @@ const req_quitter_lobby = function (req, res, query) {
 	page = nj.renderString(page,marqueurs);
     
 	res.writeHead(200, { 'Content-Type': 'text/html' });
-    res.write(page);
-    res.end();
+	res.write(page);
+	res.end();
 };
 
 module.exports = req_quitter_lobby;

@@ -86,10 +86,10 @@ const req_rafraichir = function (req,res,query){
 	
 	//recup l'indice du joueur dans membres.json
 	for(let n = 0; n < membres.length; i++){
-			if(membres[n].pseudo === pseudo){
-				indice = n;
-			}
+		if(membres[n].pseudo === pseudo){
+			indice = n;
 		}
+	}
 	
 	//recup l'indice du joueur qui se trouve dans tables.json (meme indice que pour la mise)
 	indice_pseudo = tables[choix].joueurs.indexOf(indice);
