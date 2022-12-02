@@ -68,36 +68,11 @@ const req_rafraichir = function (req,res,query){
 		}
 	}
 	
-	
 	//Le joueur qui a la main
 
 	marqueurs.actif = tables[choix].actif;
 	marqueurs.mains = tables[choix].main;
 	
-	//Les cartes de la banque
-
-	if (croupier < 17 && tables[choix].actif == tables[choix].joueurs.length ){
-		tables[choix].banque.push(fct.valeur());
-	}
-
-	//Le tour de la banque
-	let banque_actif = 5 - tables[choix].joueurs.filter(el => el === null).length === tables[choix].actif ;
-    if(banque_actif){
-		console.log("pro");
-		while(fct.calculbanque(tables[choix].banque) < 17){
-			tables[choix].banque.push(fct.carte());
-			console.log("MMM");
-		}
-		banque_etat = true;
-	}
-	if(banque_actif){
-		marqueurs.actif = false;
-	}else{
-		//recup l'indice du joueur dans membres.json
-		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
-		console.log(marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo);
-	}
-
 	//recup l'indice du joueur dans membres.json
     for(i = 0; i < membres.length ; i++){
         if(membres[i].pseudo === pseudo){
@@ -108,27 +83,54 @@ const req_rafraichir = function (req,res,query){
     //Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
     id_joueur = tables[choix].joueurs.indexOf(indice);
 
-	//recup la valeur de la mise du joueur 
-	gain = tables[choix].mises[id_joueur];
-	console.log("76",gain);
+	//Le tour de la banque
+	let banque_actif = 5 - tables[choix].joueurs.filter(el => el === null).length === tables[choix].actif ;
+    
+	if(banque_actif){
+		while(fct.calculbanque(tables[choix].banque) < 17){
+			tables[choix].banque.push(fct.carte());
+		}
+		banque_etat = true;
 
-	//verification
-	if(somme === 21){
-		if(croupier === 21){
-			membres[indice].coins += gain;
-		}else{
-			membres[indice].coins += gain * 2;
-		}
-	}else if(somme < 21){
-		if(croupier > 21 || (croupier < 21 && croupier < somme)){
-			membres[indice].coins += gain * 2;
-		}else if(croupier === somme){
-			membres[indice].coins += gain;
-		}
+	}
+
+	if(banque_actif){
+		marqueurs.actif = false;
+	}else{
+		//recup l'indice du joueur dans membres.json
+		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
 	}
 
 	if(banque_etat === true){
 		marqueurs.fin = true;
+	}
+
+	//recup la valeur de la mise du joueur 
+	gain = tables[choix].mises[id_joueur];
+	
+	//verification
+	console.log(membres[indice].coins);	
+	console.log("gato");
+	if(banque_actif){
+		if(somme[id_joueur] === 21){
+			if(croupier === 21){
+				membres[indice].coins += gain;
+				console.log("gato1");
+			}else{
+				membres[indice].coins += gain * 2;
+				console.log("gato2");
+			}
+		}else if(somme[id_joueur] < 21){
+			if(croupier > 21 || (croupier < 21 && croupier < somme[id_joueur])){
+				membres[indice].coins += gain * 2;
+				console.log("gato3");
+			}else if(croupier === somme[id_joueur]){
+				membres[indice].coins += gain;
+				console.log("gato4");
+			}
+		}
+		console.log(gain);
+		banque_actif = false;
 	}
 
 	//Mémorisation du Contexte
