@@ -4,7 +4,7 @@
 
         <title></title>
         <meta charset="utf-8">
-        <!-- <meta http-equiv="refresh" content="7; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}"> -->
+        <meta http-equiv="refresh" content="7; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">
         <link rel="stylesheet" type="text/css" href="modele_plateau.css">
         
     </head>
@@ -43,7 +43,7 @@
 
     </div>
 
-        {% if actif == 5 %}
+        {% if fin %}
             <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
             <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
         {% endif %}
