@@ -30,6 +30,7 @@ const req_rafraichir = function (req,res,query){
 	let gain;
 	let i;
 	let pseudo_actif = [];
+	let banque_etat;
 
 	//Récupération du Contexte
 
@@ -87,6 +88,7 @@ const req_rafraichir = function (req,res,query){
 			tables[choix].banque.push(fct.carte());
 			console.log("MMM");
 		}
+		banque_etat = true;
 	}
 	if(banque_actif){
 		marqueurs.actif = false;
@@ -108,7 +110,7 @@ const req_rafraichir = function (req,res,query){
 
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[id_joueur];
-
+	console.log("76",gain);
 
 	//verification
 	if(somme === 21){
@@ -125,7 +127,10 @@ const req_rafraichir = function (req,res,query){
 		}
 	}
 
-	
+	if(banque_etat === true){
+		marqueurs.fin = true;
+	}
+
 	//Mémorisation du Contexte
 
 	contenu = JSON.stringify(tables, null, "\t");
