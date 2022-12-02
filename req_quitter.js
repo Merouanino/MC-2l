@@ -35,7 +35,7 @@ const req_quitter_lobby = function (req, res, query) {
 	
 	//supprétion du joueur ayant quitter la table
 	
-	tables[choix].joueurs.splice(joueur, 1);
+	tables[choix].joueurs.splice(pseudo,1);
 	
 	tables = JSON.stringify(tables);
 	tables = fs.writeFileSync("tables.json", tables, 'utf-8');
