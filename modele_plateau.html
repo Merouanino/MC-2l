@@ -13,10 +13,12 @@
     <div class="global">
        
         <div class="banque">
-            <p>Banque</p>
-            {% for carte in banque %}
-            <img src="52_cartes/{{carte}}.svg"> 
-            {% endfor %}
+            <h2 class="text_banque">Banque</h2>
+            <div class="cartes_banque">
+                {% for carte in banque %}
+                <img src="52_cartes/{{carte}}.svg"> 
+                {% endfor %}
+            </div>   
         </div>
 
         <div class="mains">
