@@ -11,7 +11,7 @@ const req_continuer = function (req, res, query) {
 	let contenu;
 	let membre;
 	let coins;
-	let table;
+	let tables;
 	let page;
     let marqueurs;
 	let choix;
@@ -37,9 +37,9 @@ const req_continuer = function (req, res, query) {
 	//Lecture du fichier json 
 	
 	contenu = fs.readFileSync("tables.json", "UTF-8");
-    table = JSON.parse(contenu);
+    tables = JSON.parse(contenu);
 
-	table[choix].etat = true;
+	tables[choix].etat = true;
 
 	//initialisation de la liste des mises
     for(let i = 0; i < 4; i++){
@@ -48,8 +48,8 @@ const req_continuer = function (req, res, query) {
 	
 	//on enregistre
 
-	table = JSON.stringify(table);
-	table = fs.writeFileSync("tables.json", table, "UTF-8");
+	tables = JSON.stringify(tables);
+	tables = fs.writeFileSync("tables.json", tables, "UTF-8");
 	
 	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
 	
