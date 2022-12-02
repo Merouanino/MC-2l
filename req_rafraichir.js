@@ -95,7 +95,16 @@ const req_rafraichir = function (req,res,query){
 		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
 		console.log(marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo);
 	}
-	//id_joueur = tables[choix].joueurs.indexOf(membres[tables[choix].joueurs[tables[choix].actif    ]].pseudo);
+
+	//recup l'indice du joueur dans membres.json
+    for(i = 0; i < membres.length ; i++){
+        if(membres[i].pseudo === pseudo){
+            indice = i;
+        }
+    }
+
+    //Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
+    id_joueur = tables[choix].joueurs.indexOf(indice);
 
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[id_joueur];
@@ -115,6 +124,7 @@ const req_rafraichir = function (req,res,query){
 			membres[indice].coins += gain;
 		}
 	}
+
 	
 	//Mémorisation du Contexte
 
