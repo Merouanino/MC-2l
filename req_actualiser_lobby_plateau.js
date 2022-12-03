@@ -67,6 +67,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	
 			tables[choix].banque.push(fct.carte(),fct.carte());
 		}
+		tables[choix].actif = 0;
 		page = fs.readFileSync("modele_plateau.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");

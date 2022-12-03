@@ -18,6 +18,7 @@ const actualiser_lobby = function (req, res, query) {
 	let joueur;
 	let marqueurs;
 	let page;
+	let nul;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -55,7 +56,13 @@ const actualiser_lobby = function (req, res, query) {
 	continuer = tables[choix].etat;
 	
 	//on veut récupérer le nb de personnes qui désire continuer la partie à la fin d'une manche
-	
+
+	for(let j = 0; j < tables[choix].joueurs.length; j++){
+        nul = tables[choix].joueurs.indexOf(null);
+        tables[choix].joueurs.splice(null, 1);
+    }
+
+
 	if(continuer === true){
 		joueur = 5 - tables[choix].joueurs.length;
 

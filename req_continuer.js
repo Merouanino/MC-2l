@@ -39,7 +39,7 @@ const req_continuer = function (req, res, query) {
 	contenu = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(contenu);
 
-
+/*
 	for (let i = 0; i < membres.length; i++){
 		if(membres[i].pseudo === pseudo){
 			indice = i;
@@ -47,7 +47,7 @@ const req_continuer = function (req, res, query) {
 	}
 	
 	joueur = tables[choix].joueurs.indexOf(indice);
-
+*/
 
 	//initialisation des cartes du joueur et de la banque
 	for(let j = 0; j < tables[choix].main.length; j++){
@@ -56,17 +56,18 @@ const req_continuer = function (req, res, query) {
 
 
 	//initialisation de la liste des mises
-	tables[choix].mises.splice(joueur, 1);
+	for(let j = 0; j < 4 ; j++){	
+		tables[choix].mises.splice(0, 1);
+	}
 
-	for(let j = 0; j < tables[choix].joueurs.length; j++){
+	/*for(let j = 0; j < tables[choix].joueurs.length; j++){
         nul = tables[choix].joueurs.indexOf(null);
         tables[choix].joueurs.splice(null, 1);
-    }
+    }*/
 
 
 	tables[choix].banque = [];
 	tables[choix].etat = true;
-	tables[choix].actif = 0;
 	
 	//on enregistre
 

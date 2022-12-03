@@ -131,6 +131,7 @@ const req_rafraichir = function (req,res,query){
 				tables[choix].compter = false;
 			}
 		}
+
 	}
 
 	console.log(membres[1].coins);
