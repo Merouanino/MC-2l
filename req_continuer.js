@@ -15,17 +15,15 @@ const req_continuer = function (req, res, query) {
 	let page;
     let marqueurs;
 	let choix;
+	let nul;
+	let i;
+	let indice;
+	let joueur;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
 
-/*	for (let i = 0; i < membre.length; i++){
-		if(membre[i].pseudo === pseudo){
-			coins = membre[i].coins;
-		}
-	}
-*/
 
 	//Récupération des crédits associés au compte
 	
@@ -40,7 +38,16 @@ const req_continuer = function (req, res, query) {
 	
 	contenu = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(contenu);
+
+
+	for (let i = 0; i < membres.length; i++){
+		if(membres[i].pseudo === pseudo){
+			indice = i;
+		}
+	}
 	
+	joueur = tables[choix].joueurs.indexOf(indice);
+
 
 	//initialisation des cartes du joueur et de la banque
 	for(let j = 0; j < tables[choix].main.length; j++){
@@ -49,9 +56,13 @@ const req_continuer = function (req, res, query) {
 
 
 	//initialisation de la liste des mises
-    for(let j = 0; j < 4; j++){
-        tables[choix].mises.splice(0, 1);
+	tables[choix].mises.splice(joueur, 1);
+
+	for(let j = 0; j < tables[choix].joueurs.length; j++){
+        nul = tables[choix].joueurs.indexOf(null);
+        tables[choix].joueurs.splice(null, 1);
     }
+
 
 	tables[choix].banque = [];
 	tables[choix].etat = true;
