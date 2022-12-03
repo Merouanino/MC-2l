@@ -98,7 +98,8 @@ const req_rafraichir = function (req,res,query){
 		marqueurs.actif = false;
 	}else{
 		//recup l'indice du joueur dans membres.json
-		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
+		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo;
+		marqueurs.actif === pseudo;
 	}
 
 	if(banque_etat === true){

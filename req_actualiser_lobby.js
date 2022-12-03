@@ -59,7 +59,7 @@ const actualiser_lobby = function (req, res, query) {
 
 	for(let j = 0; j < tables[choix].joueurs.length; j++){
         nul = tables[choix].joueurs.indexOf(null);
-        tables[choix].joueurs.splice(null, 1);
+        tables[choix].joueurs.splice(nul, 1);
     }
 
 
@@ -70,6 +70,7 @@ const actualiser_lobby = function (req, res, query) {
 			tables[choix].joueurs.push(lobby[choix].joueurs[0]);
 			lobby[choix].joueurs.splice(0, 1);
 		}
+		tables[choix].etat = true;
 		page = fs.readFileSync("modele_jeu.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby.html", "utf-8");

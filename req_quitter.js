@@ -64,15 +64,21 @@ const req_quitter = function (req, res, query) {
 
 
 	//supprétion du joueur ayant quitter la table
-	
+	for(let j = 0; j < tables[choix].joueurs.length; j++){	
 	tables[choix].joueurs.splice(joueur, 1);
+	}
 	//tables[choix].joueurs.push(null);
-	tables[choix].mises.splice(joueur, 1);
+	
+
+	for(let j = 0; j < 4 ; j++){
+        tables[choix].mises.splice(0, 1);
+    }
+
 	tables[choix].etat = true;
 
 	for(let j = 0; j < tables[choix].joueurs.length; j++){
 		nul = tables[choix].joueurs.indexOf(null);
-		tables[choix].joueurs.splice(null, 1);
+		tables[choix].joueurs.splice(nul, 1);
 	}
 
 	
