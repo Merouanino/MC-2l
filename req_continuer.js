@@ -15,10 +15,6 @@ const req_continuer = function (req, res, query) {
 	let page;
     let marqueurs;
 	let choix;
-	let i;
-	let indice;
-	let id_joueur;
-	let main;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -46,27 +42,25 @@ const req_continuer = function (req, res, query) {
 	membres = JSON.parse(contenu);
 	
 
-	tables[choix].etat = true;
-
-
 	//initialisation des cartes du joueur et de la banque
 	for(let j = 0; j < tables[choix].main.length; j++){
 		tables[choix].main[j] = [];
 	}
 
-	tables[choix].banque = [];
 
 	//initialisation de la liste des mises
     for(let j = 0; j < 4; j++){
         tables[choix].mises.splice(0, 1);
     }
 
+	tables[choix].banque = [];
+	tables[choix].etat = true;
 	tables[choix].actif = 0;
 	
 	//on enregistre
 
-	tables = JSON.stringify(tables);
-	tables = fs.writeFileSync("tables.json", tables, "UTF-8");
+	contenu = JSON.stringify(tables);
+	contenu = fs.writeFileSync("tables.json", contenu, "UTF-8");
 	
 	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
 	
