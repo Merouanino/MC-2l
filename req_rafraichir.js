@@ -110,29 +110,34 @@ const req_rafraichir = function (req,res,query){
 	
 	//verification
 	console.log(membres[indice].coins);	
-	console.log("gato");
-	if(banque_actif){
+	console.log(tables[choix].compter);
+	console.log(banque_actif);
+
+	if(banque_actif && tables[choix].compter === true){
 		if(somme[id_joueur] === 21){
 			if(croupier === 21){
 				membres[indice].coins += gain;
+				tables[choix].compter = false;
 				console.log("gato1");
 			}else{
 				membres[indice].coins += gain * 2;
+				tables[choix].compter = false;
 				console.log("gato2");
 			}
 		}else if(somme[id_joueur] < 21){
 			if(croupier > 21 || (croupier < 21 && croupier < somme[id_joueur])){
 				membres[indice].coins += gain * 2;
+				tables[choix].compter = false;
 				console.log("gato3");
 			}else if(croupier === somme[id_joueur]){
 				membres[indice].coins += gain;
+				tables[choix].compter = false;
 				console.log("gato4");
 			}
-		}
-		console.log(gain);
-		banque_actif = false;
+		}	
 	}
 
+	console.log(membres[1].coins);
 	//Mémorisation du Contexte
 
 	contenu = JSON.stringify(tables, null, "\t");
