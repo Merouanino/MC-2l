@@ -14,6 +14,7 @@ const req_ejecter = function(req, res, query){
 	let pseudo;
 	let choix;
 	let joueur;
+	let contenu;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -37,8 +38,8 @@ const req_ejecter = function(req, res, query){
 
     tables[choix].joueurs.splice(joueur, 1);
 
-    tables = JSON.stringify(tables);
-    tables = fs.writeFileSync("tables.json", tables, 'utf-8');
+    contenu = JSON.stringify(tables);
+    contenu = fs.writeFileSync("tables.json", contenu, 'utf-8');
    
 	marqueurs = {};
     marqueurs.pseudo = pseudo;

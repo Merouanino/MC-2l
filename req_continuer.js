@@ -9,42 +9,59 @@ const req_continuer = function (req, res, query) {
 	let pathname;
 	let pseudo;
 	let contenu;
-	let membre;
+	let membres;
 	let coins;
 	let tables;
 	let page;
     let marqueurs;
 	let choix;
-
-	//Récupération des crédits associés au compte
-	
-	pseudo = query.pseudo;
-	choix = query.choix;
-	
-	contenu = fs.readFileSync("membres.json", "UTF-8");
-	membre = JSON.parse(contenu);
-	
-	for (let i = 0; i < membre.length; i++){
-		if(membre[i].pseudo === pseudo){
-			coins = membre[i].coins;
-		}
-	}
+	let i;
+	let indice;
+	let id_joueur;
+	let main;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
 
+/*	for (let i = 0; i < membre.length; i++){
+		if(membre[i].pseudo === pseudo){
+			coins = membre[i].coins;
+		}
+	}
+*/
+
+	//Récupération des crédits associés au compte
+	
+	pseudo = query.pseudo;
+	choix = query.choix;
+
+
 	//Lecture du fichier json 
 	
 	contenu = fs.readFileSync("tables.json", "UTF-8");
     tables = JSON.parse(contenu);
+	
+	contenu = fs.readFileSync("membres.json", "UTF-8");
+	membres = JSON.parse(contenu);
+	
 
 	tables[choix].etat = true;
 
+
+	//initialisation des cartes du joueur et de la banque
+	for(let j = 0; j < tables[choix].main.length; j++){
+		tables[choix].main[j] = [];
+	}
+
+	tables[choix].banque = [];
+
 	//initialisation de la liste des mises
-    for(let i = 0; i < 4; i++){
+    for(let j = 0; j < 4; j++){
         tables[choix].mises.splice(0, 1);
     }
+
+	tables[choix].actif = 0;
 	
 	//on enregistre
 
