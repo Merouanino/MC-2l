@@ -1,17 +1,1 @@
-[
-	{
-		"pseudo": "merouane",
-		"password": "merouane",
-		"coins": 1100
-	},
-	{
-		"pseudo": "lucien",
-		"password": "lucien",
-		"coins": 1000
-	},
-	{
-		"pseudo": "lea",
-		"password": "leaa",
-		"coins": 100
-	}
-]
+[{"pseudo":"merouane","password":"merouane","coins":1000},{"pseudo":"lucien","password":"lucien","coins":1000},{"pseudo":"lea","password":"leaa","coins":1000}]

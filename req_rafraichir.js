@@ -31,6 +31,8 @@ const req_rafraichir = function (req,res,query){
 	let i;
 	let pseudo_actif = [];
 	let banque_etat;
+	let blabla1;
+	let blabla;
 
 	//Récupération du Contexte
 
@@ -97,9 +99,8 @@ const req_rafraichir = function (req,res,query){
 	if(banque_actif){
 		marqueurs.actif = false;
 	}else{
-		//recup l'indice du joueur dans membres.json
-		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo;
-		marqueurs.actif === pseudo;
+		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
+		console.log("pseudo : " + pseudo + " + marqueurs.actif : " + marqueurs.actif);
 	}
 
 	if(banque_etat === true){
