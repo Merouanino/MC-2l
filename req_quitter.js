@@ -17,7 +17,6 @@ const req_quitter = function (req, res, query) {
 	let coins;
 	let contenu;
 	let indice;
-	let nul;
 
 	requete = url.parse(req.url, true);
 	pathname = requete.pathname;
@@ -31,21 +30,19 @@ const req_quitter = function (req, res, query) {
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
 
-
+	//recup l'indice du joueur dans membre
 	for (let i = 0; i < members.length; i++){
         if(members[i].pseudo === pseudo){
             coins = members[i].coins;
 			indice = i;
         }
     }
-
+	
 
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
 	pseudo = query.pseudo;
 	choix = query.choix;
-
-	joueur = tables[choix].joueurs.indexOf(indice);
 
 
 	//initialisation des cartes du joueur et de la banque
@@ -53,33 +50,33 @@ const req_quitter = function (req, res, query) {
         tables[choix].main[j] = [];
     }
 	
-	tables[choix].banque = [];
 
 	//initialisation de la liste des mises
     for(let j = 0; j < 4; j++){
         tables[choix].mises.splice(0, 1);
     }
 
-    tables[choix].actif = 0;
-
-
 	//supprétion du joueur ayant quitter la table
 	for(let j = 0; j < tables[choix].joueurs.length; j++){	
-	tables[choix].joueurs.splice(joueur, 1);
+	joueur = tables[choix].joueurs.indexOf(indice);
+		tables[choix].joueurs.splice(joueur, 1);
 	}
-	//tables[choix].joueurs.push(null);
-	
 
-	for(let j = 0; j < 4 ; j++){
-        tables[choix].mises.splice(0, 1);
-    }
+/*
+	for(let j = 0; j < tables[choix].joueurs.length; j++){	
+		if(tables[choix].joueurs.includes(indice)){
+			joueur = tables[choix].joueurs.indexOf(indice);
+			tables[choix].joueurs.splice(joueur, 1);
+			page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
+        }else{
+			page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
+        }
+	}
+*/
 
+	tables[choix].banque = [];
+    tables[choix].actif = 0;
 	tables[choix].etat = true;
-
-	for(let j = 0; j < tables[choix].joueurs.length; j++){
-		nul = tables[choix].joueurs.indexOf(null);
-		tables[choix].joueurs.splice(nul, 1);
-	}
 
 	
 	contenu = JSON.stringify(tables);

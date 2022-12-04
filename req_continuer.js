@@ -39,15 +39,15 @@ const req_continuer = function (req, res, query) {
 	contenu = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(contenu);
 
-/*
+
 	for (let i = 0; i < membres.length; i++){
 		if(membres[i].pseudo === pseudo){
 			indice = i;
 		}
 	}
 	
-	joueur = tables[choix].joueurs.indexOf(indice);
-*/
+	//joueur = tables[choix].joueurs.indexOf(indice);
+	//console.log("joueur : " + joueur);
 
 	//initialisation des cartes du joueur et de la banque
 	for(let j = 0; j < tables[choix].main.length; j++){
@@ -60,21 +60,26 @@ const req_continuer = function (req, res, query) {
 		tables[choix].mises.splice(0, 1);
 	}
 
-	/*for(let j = 0; j < tables[choix].joueurs.length; j++){
-        nul = tables[choix].joueurs.indexOf(null);
-        tables[choix].joueurs.splice(null, 1);
-    }*/
+	for(let j = 0; j < tables[choix].joueurs.length; j++){
+		if(tables[choix].joueurs.includes(indice)){
+			page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
+		}else{
+			tables[choix].joueurs.push(indice);
+			page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
+		}
+	}
 
 
 	tables[choix].banque = [];
 	tables[choix].etat = true;
-	
+	tables[choix].actif = 0;
+
 	//on enregistre
 
 	contenu = JSON.stringify(tables);
 	contenu = fs.writeFileSync("tables.json", contenu, "UTF-8");
 	
-	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
+	//page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
 	
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
