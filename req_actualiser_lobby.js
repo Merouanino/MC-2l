@@ -54,23 +54,21 @@ const actualiser_lobby = function (req, res, query) {
 	//Vérifier si la table est libre
 	
 	continuer = tables[choix].etat;
-	
-	//on veut récupérer le nb de personnes qui désire continuer la partie à la fin d'une manche
-
-	for(let j = 0; j < tables[choix].joueurs.length; j++){
-        nul = tables[choix].joueurs.indexOf(null);
-        tables[choix].joueurs.splice(nul, 1);
-    }
-
 
 	if(continuer === true){
-		joueur = 5 - tables[choix].joueurs.length;
+		tables[choix].joueurs = [];
 
-		for(let i = 0; i < joueur; i++){
+		while (lobby[choix].joueurs.length > 0 && tables[choix].joueurs.length < 5) {
 			tables[choix].joueurs.push(lobby[choix].joueurs[0]);
 			lobby[choix].joueurs.splice(0, 1);
 		}
+
 		tables[choix].etat = true;
+		tables[choix].mises = [];
+
+		for (let j of tables[choix].joueurs) {
+			tables[choix].mises.push(null);
+		}
 		page = fs.readFileSync("modele_jeu.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby.html", "utf-8");

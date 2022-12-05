@@ -17,22 +17,15 @@ const req_rafraichir = function (req,res,query){
 	let lobby;
 	let membres;
 	let tables;
-	let resultat;
 	let somme = [0,0,0,0,0];
-	let gains;
 	let mise;
 	let croupier = 0;
-	let blackjack;
-	let actif;
 	let marqueurs = {};
 	let indice;
 	let id_joueur;
 	let gain;
 	let i;
-	let pseudo_actif = [];
 	let banque_etat;
-	let blabla1;
-	let blabla;
 
 	//Récupération du Contexte
 
@@ -56,24 +49,11 @@ const req_rafraichir = function (req,res,query){
 	//Traitement
 	
 	//Calcul des mains
-	for(let m = 0; m < tables[choix].banque.length; m++){
-		croupier += Number(fct.valeur(tables[choix].banque[m]));
-		console.log("1", croupier);
-	}
+	croupier = fct.calculbanque(tables[choix].banque);
 		
 	for(let i = 0; i < tables[choix].joueurs.length; i++){
-		if(tables[choix].joueurs[i] !== null){
-			for(let j = 0; j < tables[choix].main[i].length; j++){
-				somme[i] += Number(fct.valeur(tables[choix].main[i][j]));
-			console.log("2", somme);
-			}
-		}
+		somme[i] = fct.calculbanque(tables[choix].main[i]);
 	}
-	
-	//Le joueur qui a la main
-
-	marqueurs.actif = tables[choix].actif;
-	marqueurs.mains = tables[choix].main;
 	
 	//recup l'indice du joueur dans membres.json
     for(i = 0; i < membres.length ; i++){
@@ -86,27 +66,15 @@ const req_rafraichir = function (req,res,query){
     id_joueur = tables[choix].joueurs.indexOf(indice);
 
 	//Le tour de la banque
-	let banque_actif = 5 - tables[choix].joueurs.filter(el => el === null).length === tables[choix].actif ;
+	let banque_actif = tables[choix].joueurs.length === tables[choix].actif;
     
 	if(banque_actif){
 		while(fct.calculbanque(tables[choix].banque) < 17){
-			tables[choix].banque.push(fct.carte());
+			tables[choix].banque.push(fct.carte(tables[choix].cartes));
 		}
 		banque_etat = true;
 
 	}
-
-	if(banque_actif){
-		marqueurs.actif = false;
-	}else{
-		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
-		console.log("pseudo : " + pseudo + " + marqueurs.actif : " + marqueurs.actif);
-	}
-
-	if(banque_etat === true){
-		marqueurs.fin = true;
-	}
-
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[id_joueur];
 	
@@ -131,9 +99,12 @@ const req_rafraichir = function (req,res,query){
 			}else if(croupier === somme[id_joueur]){
 				membres[indice].coins += gain;
 				tables[choix].compter = false;
+			} else {
+				console.log("2e else", croupier, somme[id_joueur]);
 			}
+		} else {
+			console.log("1er else", croupier, somme[id_joueur]);
 		}
-
 	}
 
 	console.log(membres[1].coins);
@@ -147,10 +118,23 @@ const req_rafraichir = function (req,res,query){
 	
 	//Fabrication et envoi de la page HTML
 
+	if(banque_actif){
+		marqueurs.actif = false;
+	}else{
+		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
+		console.log("pseudo : " + pseudo + " + marqueurs.actif : " + marqueurs.actif);
+	}
+
+	if(banque_etat === true){
+		marqueurs.fin = true;
+	}
+
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
 	marqueurs.banque = tables[choix].banque;
+	marqueurs.actif = tables[choix].actif;
+	marqueurs.mains = tables[choix].main;
 	page = nj.renderString(page,marqueurs);
 	
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });

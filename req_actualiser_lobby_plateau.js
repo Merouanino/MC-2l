@@ -41,14 +41,10 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	cartes = tables[choix].main;
 
 	//Vérifie que les joueurs sont là et récupère leur mise, si ts les joueurs du tab sont là on les envoit vers le plateau
-
-	//joueur = tables[choix].joueurs;
-	//joueur_mise = tables[choix].mises;
-	joueur = tables[choix].joueurs.filter(el1 => el1 === null);
 	joueur_mise = tables[choix].mises.filter(el2 => el2 === null);
 	
 	//rajouter mise dans json
-	if(joueur.length === joueur_mise.length){
+	if(joueur_mise.length === 0){
 	
 		//Initialisation des cartes
     	if(tables[choix].cartes.length === 0){ 
@@ -61,13 +57,14 @@ const actualiser_lobby_plateau = function (req, res, query) {
 		if(tables[choix].main[0].length <= 0){
 			for(let i = 0; i < tables[choix].joueurs.length; i++){
 				if(tables[choix].joueurs[i] !== null){
-					let c = tables[choix].main[i].push(fct.carte(),fct.carte());
+					let c = tables[choix].main[i].push(fct.carte(tables[choix].cartes),fct.carte(tables[choix].cartes));
 				}
 			}
 	
-			tables[choix].banque.push(fct.carte(),fct.carte());
+			console.log("banque reçoit ses cartes");
+			tables[choix].banque = [fct.carte(tables[choix].cartes),fct.carte(tables[choix].cartes)];
+			tables[choix].actif = 0;
 		}
-		tables[choix].actif = 0;
 		page = fs.readFileSync("modele_plateau.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby_plateau.html", "utf-8");

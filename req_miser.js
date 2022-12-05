@@ -48,32 +48,17 @@ const req_miser = function (req,res,query){
 		}
 	}
 
+	//Traitement
+
 	//Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
 	indice_pseudo = tables[choix].joueurs.indexOf(indice);
-
-	//initialisation de la liste des mises
-	while(tables[choix].mises.length < 5){
-		tables[choix].mises.push(null);
-	}
-
-
-	//Traitement
-	
-	for (let j = 0; j < membres.length; j++){
-		if (membres[j].pseudo === pseudo && membres[j].coins >= mise && membres[j].coins - mise >= 0){
-			membres[j].coins -= mise;
-		}
-	}
-	
 	//ajoute la mise des joueurs 
-	console.log(indice_pseudo);
-	console.log(indice);
-	for (let j = 0; j < membres.length; j++){
-		if (membres[j].pseudo === pseudo && tables[choix].etat === true){
-			//tables[choix].mises.splice(indice_pseudo, 1, mise);
-			tables[choix].mises[indice_pseudo] = mise;
-		}
+	
+	if (membres[indice].coins >= mise){
+		membres[indice].coins -= mise;
+		tables[choix].mises[indice_pseudo] = mise;
 	}
+	// TODO: Réafficher la page si la mise est trop grande.
 
 	//Mémorisation du Contexte
 	

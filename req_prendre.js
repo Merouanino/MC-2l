@@ -28,30 +28,23 @@ const req_prendre = function (req,res,query){
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
 	actif = tables[choix].actif;
-	page = fs.readFileSync("modele_plateau.html", "utf-8");
 
 	//Traitement
 
 	console.log(actif);
 
-	//for(let i = 0; i < tables[choix].joueurs.length; i++){
-	carte_random = fct.carte();
-	tables[choix].cartes.splice(tables[choix].cartes.indexOf(carte_random), 1);
-	if(tables[choix].joueurs[actif] !== null ){
-		tables[choix].main[actif].push(carte_random);	
-	}
-	//}
+	carte_random = fct.carte(tables[choix].cartes);
+	tables[choix].main[actif].push(carte_random);	
+	tables[choix].cartes.splice(carte_random, 1);
 
-	if(tables[choix].cartes.length < 3 * 52 ){
+	if(tables[choix].cartes.length < (3 * 52) ){
 		let paquet = fct.carteInit();
 		tables[choix].cartes = paquet;
 	}
-	
 
 	//Mémorisation du Contexte
 	contenu = JSON.stringify(tables);
 	fs.writeFileSync("tables.json", contenu, "utf-8");
-
 
 	//Fabrication et envoi de la page HTML
 	marqueurs = {};

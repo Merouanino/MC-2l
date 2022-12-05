@@ -26,8 +26,6 @@ const req_passer = function (req,res,query){
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
 	
-	page = fs.readFileSync("modele_plateau.html", "utf-8");
-
 	//Traitement
 	
 	tables[choix].actif += 1;
