@@ -60,9 +60,8 @@ const req_miser = function (req,res,query){
 	//Traitement
 	
 	for (let j = 0; j < membres.length; j++){
-		if (membres[j].pseudo === pseudo && membres[j].coins > mise && membres[j].coins - mise > 0){
+		if (membres[j].pseudo === pseudo && membres[j].coins >= mise && membres[j].coins - mise >= 0){
 			membres[j].coins -= mise;
-			
 		}
 	}
 	
