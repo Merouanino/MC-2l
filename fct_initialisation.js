@@ -17,11 +17,13 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
     };  
     
     function valeur(c){
-        let v = [c % 13];
-		if(v == 0){
+        let v = [(c+1) % 13];
+		if(v == 1){
 			v = 11;
-		}else if(v > 0 && v < 10){
-			return v + 1;
+		}else if(v > 0 && v <= 10){
+			return v;
+		}else if(v === 0){
+			return v = 10;
 		}else{
 			v = 10;
 		}
@@ -50,7 +52,6 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 		let total = 0;
 		for(let i = 0; i < l.length; i++){
 			total += Number(valeur(l[i]));
-
 		}
 		return total;
 	}
