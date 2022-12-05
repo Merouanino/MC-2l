@@ -35,7 +35,6 @@ const req_prendre = function (req,res,query){
 
 	carte_random = fct.carte(tables[choix].cartes);
 	tables[choix].main[actif].push(carte_random);	
-	tables[choix].cartes.splice(carte_random, 1);
 
 	if(tables[choix].cartes.length < (3 * 52) ){
 		let paquet = fct.carteInit();

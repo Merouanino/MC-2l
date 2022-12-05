@@ -46,16 +46,11 @@ const actualiser_lobby = function (req, res, query) {
 		pseudos.push(membres[lobby[choix].joueurs[i]]);
 	}
 
-    //Mémorisation du Contexte
-
-    contenu = JSON.stringify(lobby);
-    fs.writeFileSync("lobbys.json", contenu, "utf-8");
-	
 	//Vérifier si la table est libre
 	
 	continuer = tables[choix].etat;
 
-	if(continuer === true){
+	if(continuer === false){
 		tables[choix].joueurs = [];
 
 		while (lobby[choix].joueurs.length > 0 && tables[choix].joueurs.length < 5) {
@@ -64,24 +59,29 @@ const actualiser_lobby = function (req, res, query) {
 		}
 
 		tables[choix].etat = true;
+		tables[choix].compter = true;
 		tables[choix].mises = [];
+		tables[choix].cartes = [];
+		tables[choix].main = [];
 
 		for (let j of tables[choix].joueurs) {
 			tables[choix].mises.push(null);
 		}
+	}
+
+	//Mémorisation du Contexte
+
+	contenu = JSON.stringify(tables);
+	fs.writeFileSync("tables.json", contenu, "utf-8");
+
+	contenu = JSON.stringify(lobby);
+	fs.writeFileSync("lobbys.json", contenu, "utf-8");
+
+	if (tables[choix].joueurs.some(j => membres[j].pseudo === pseudo)) {
 		page = fs.readFileSync("modele_jeu.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby.html", "utf-8");
 	}
-
-
-	//Mémorisation du Contexte
-
-	tables = JSON.stringify(tables);
-	fs.writeFileSync("tables.json", tables, "utf-8");
-
-	lobby = JSON.stringify(lobby);
-	fs.writeFileSync("lobbys.json", lobby, "utf-8");
 
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;

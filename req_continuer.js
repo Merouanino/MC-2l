@@ -50,7 +50,7 @@ const req_continuer = function (req, res, query) {
 	contenu = JSON.stringify(lobbys);
 	fs.writeFileSync("lobbys.json", contenu, "UTF-8");
 
-	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
+	page = fs.readFileSync(`modele_lobby.html`, "UTF-8");
 
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;

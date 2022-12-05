@@ -33,7 +33,6 @@ const req_rejoindre = function (req,res,query){
 	
 	for (let i = 0; i < membres.length; i++){
 		if (membres[i].pseudo === pseudo){
-			console.log("Ajout du joueur " + pseudo + " dans le lobby.");
 			lobby[choix].joueurs.push(i);
 		}
 	}

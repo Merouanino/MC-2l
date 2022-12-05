@@ -16,7 +16,7 @@
             <h2 class="text_banque">Banque</h2>
             <div class="cartes_banque">
                 {% for carte in banque %}
-                <img src="52_cartes/{{carte}}.svg"> 
+                <img src="52_cartes/{{ carte + 1 }}.svg"> 
                 {% endfor %}
             </div>   
         </div>
@@ -25,7 +25,7 @@
             {% for main in mains %}
             <div class="main">
                 {% for carte in main %}
-                <img src="52_cartes/{{carte}}.svg"> 
+                <img src="52_cartes/{{ carte + 1 }}.svg"> 
                 {% endfor %}
                 </div>
 

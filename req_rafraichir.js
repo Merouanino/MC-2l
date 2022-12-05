@@ -73,7 +73,7 @@ const req_rafraichir = function (req,res,query){
 			tables[choix].banque.push(fct.carte(tables[choix].cartes));
 		}
 		banque_etat = true;
-
+		tables[choix].etat = false;
 	}
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[id_joueur];
@@ -120,6 +120,7 @@ const req_rafraichir = function (req,res,query){
 
 	if(banque_actif){
 		marqueurs.actif = false;
+		console.log("banque active");
 	}else{
 		marqueurs.actif = membres[tables[choix].joueurs[tables[choix].actif]].pseudo === pseudo;
 		console.log("pseudo : " + pseudo + " + marqueurs.actif : " + marqueurs.actif);
@@ -133,7 +134,7 @@ const req_rafraichir = function (req,res,query){
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
 	marqueurs.banque = tables[choix].banque;
-	marqueurs.actif = tables[choix].actif;
+	// marqueurs.actif = tables[choix].actif;
 	marqueurs.mains = tables[choix].main;
 	page = nj.renderString(page,marqueurs);
 	

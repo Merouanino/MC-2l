@@ -50,18 +50,18 @@ const actualiser_lobby_plateau = function (req, res, query) {
     	if(tables[choix].cartes.length === 0){ 
     		let paquet = fct.carteInit()
     		tables[choix].cartes = paquet;
-		}   
+		}
     
 		//Distribution des cartes 
 		console.log(tables[choix].main);
-		if(tables[choix].main[0].length <= 0){
+		if(tables[choix].main.length === 0){
 			for(let i = 0; i < tables[choix].joueurs.length; i++){
-				if(tables[choix].joueurs[i] !== null){
-					let c = tables[choix].main[i].push(fct.carte(tables[choix].cartes),fct.carte(tables[choix].cartes));
-				}
+				tables[choix].main.push([
+					fct.carte(tables[choix].cartes),
+					fct.carte(tables[choix].cartes)
+				]);
 			}
 	
-			console.log("banque reçoit ses cartes");
 			tables[choix].banque = [fct.carte(tables[choix].cartes),fct.carte(tables[choix].cartes)];
 			tables[choix].actif = 0;
 		}
