@@ -21,6 +21,9 @@ const req_quitter = function (req, res, query) {
 	requete = url.parse(req.url, true);
 	pathname = requete.pathname;
 	query = requete.query;
+	
+	pseudo = query.pseudo;
+	choix = query.choix;
 
 	//Lecture du fichier json 
 		
@@ -29,6 +32,13 @@ const req_quitter = function (req, res, query) {
 
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
+	
+	// On cherche le nombre de crédits
+    for(let i = 0; i < members.length; i++){
+        if(members[i].pseudo === pseudo){
+            coins = members[i].coins;
+        }
+    }
 
 	//recup l'indice du joueur dans membre
 	for (let i = 0; i < members.length; i++){
@@ -41,8 +51,6 @@ const req_quitter = function (req, res, query) {
 
 	//récupération du pseudo depuis url et trouve l'indice du joueur dans le tableau joueur
 	
-	pseudo = query.pseudo;
-	choix = query.choix;
 
 
 	//initialisation des cartes du joueur et de la banque
