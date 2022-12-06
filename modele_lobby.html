@@ -17,6 +17,11 @@
 		</li>
 		{% endfor %}
 
+		{% if actif %}
+		<a href="/req_actualiser_lobby?choix={{choix}}&pseudo={{pseudo}}">Passer le lobby</a>
+		{% endfor %}
+
+
 		<a href="/req_quitter_lobby?choix={{choix}}&pseudo={{pseudo}}">Quitter</a>
     </body>
 </html>

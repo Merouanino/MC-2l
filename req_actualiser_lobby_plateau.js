@@ -48,11 +48,13 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	joueur_mise = tables[choix].mises.filter(el2 => el2 === null);
 	
 	//rajouter mise dans json
+	console.log(joueur.length);
+	console.log(joueur_mise.length);
 	if(joueur.length === joueur_mise.length){
 	
 		//Initialisation des cartes
     	if(tables[choix].cartes.length === 0){ 
-    		let paquet = fct.carteInit()
+    		let paquet = fct.carteInit();
     		tables[choix].cartes = paquet;
 		}   
     

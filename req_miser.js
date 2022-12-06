@@ -26,7 +26,7 @@ const req_miser = function (req,res,query){
 	
 	requete = url.parse(req.url, true);
 	pathname = requete.pathname;
-	query = requete.query
+	query = requete.query;
 	
 	mise = Number(query.mise);
 	pseudo = query.pseudo;
