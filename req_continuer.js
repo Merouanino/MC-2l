@@ -28,7 +28,6 @@ const req_continuer = function (req, res, query) {
 	pseudo = query.pseudo;
 	choix = query.choix;
 
-
 	//Lecture du fichier json 
 	
 	contenu = fs.readFileSync("membres.json", "UTF-8");
@@ -45,6 +44,15 @@ const req_continuer = function (req, res, query) {
 
 	lobbys[choix].joueurs.push(indice);
 
+	let pseudos = []; 
+    
+	for (let j = 0; j < lobbys[choix].joueurs.length; j++){
+		pseudos.push(membres[indice].pseudo);
+
+        //pseudos.push(membres[lobby[choix].joueurs[j]].pseudo);
+	}
+
+
 	//on enregistre
 
 	contenu = JSON.stringify(lobbys);
@@ -53,6 +61,8 @@ const req_continuer = function (req, res, query) {
 	page = fs.readFileSync(`modele_lobby.html`, "UTF-8");
 
 	marqueurs = {};
+	marqueurs["pseudos"] = pseudos;
+	marqueurs.etape = lobbys[choix].etape === 0;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.credits = coins;

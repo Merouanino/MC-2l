@@ -19,6 +19,7 @@ const actualiser_lobby = function (req, res, query) {
 	let marqueurs;
 	let page;
 	let nul;
+	let indice;
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
@@ -42,8 +43,16 @@ const actualiser_lobby = function (req, res, query) {
 	pseudo = query.pseudo;
 	pseudos = [];
 
+	for (let i = 0; i < membres.length; i++){
+          if(membres[i].pseudo === pseudo){
+              indice = i;
+          }
+      }
+
+
 	for(let i = 0; i < lobby[choix].joueurs.length; i++){
-		pseudos.push(membres[lobby[choix].joueurs[i]]);
+		pseudos.push(membres[indice].pseudo);
+//		pseudos.push(membres[lobby[choix].joueurs[i]].pseudo);
 	}
 
 	//Vérifier si la table est libre
@@ -77,15 +86,17 @@ const actualiser_lobby = function (req, res, query) {
 	contenu = JSON.stringify(lobby);
 	fs.writeFileSync("lobbys.json", contenu, "utf-8");
 
-	if (tables[choix].joueurs.some(j => membres[j].pseudo === pseudo)) {
+	if (tables[choix].joueurs.some(j => membres[j].pseudo === pseudo) && lobby[choix].etape === 1) {
 		page = fs.readFileSync("modele_jeu.html", "utf-8");
 	}else{
 		page = fs.readFileSync("modele_lobby.html", "utf-8");
 	}
 
 	marqueurs = {};
+	marqueurs["pseudos"] = pseudos;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
+	marqueurs.etape = lobby[choix].etape === 0;
 
 	page = nunjucks.renderString(page, marqueurs);
 

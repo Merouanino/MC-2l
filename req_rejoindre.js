@@ -54,6 +54,7 @@ const req_rejoindre = function (req,res,query){
 	marqueurs["pseudos"] = pseudos;	
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
+	marqueurs.etape = lobby[choix].etape === 0;
 
 	page = nj.renderString(page,marqueurs);
 	

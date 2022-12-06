@@ -4,7 +4,7 @@
         <title>Lobby</title>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="modele_lobby.css">
-		<meta http-equiv="refresh" content="15; url=/req_actualiser_lobby?choix={{choix}}&pseudo={{pseudo}}">
+		<meta http-equiv="refresh" content="2; url=/req_actualiser_lobby?choix={{choix}}&pseudo={{pseudo}}">
     </head>
     <body>
 		<h1> Veuillez patientez</h1>
@@ -16,8 +16,11 @@
         	{{ pseudo }}
 		</li>
 		{% endfor %}
-
-		<a href="/req_quitter_lobby?choix={{choix}}&pseudo={{pseudo}}">Quitter</a>
+		
+		{% if etape %}
+			<a href="/req_passer_lobby?choix={{choix}}&pseudo={{pseudo}}"><button>Rejoindre</button></a>
+		{% endif %}
+		<a href="/req_quitter_lobby?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
     </body>
 </html>
 

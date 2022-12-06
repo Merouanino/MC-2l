@@ -17,9 +17,9 @@ fs.writeFileSync("tables.json", JSON.stringify([
 ]), "UTF-8");
 
 fs.writeFileSync("lobbys.json", JSON.stringify([
-	{ "joueurs": [], "choix": [0], "min": 20 },
-	{ "joueurs": [], "choix": [1], "min": 50 },
-	{ "joueurs": [], "choix": [2], "min": 100 }
+	{ "joueurs": [], "choix": [0], "min": 20, "etape" : 0 },
+	{ "joueurs": [], "choix": [1], "min": 50, "etape" : 0 },
+	{ "joueurs": [], "choix": [2], "min": 100, "etape" : 0 }
 ]), "UTF-8");
 
 // DECLARATION DES DIFFERENTS MODULES CORRESPONDANT A CHAQUE ACTION
@@ -41,6 +41,7 @@ const req_statique = require("./req_statique.js");
 const req_erreur = require("./req_erreur.js");
 const req_prendre = require("./req_prendre.js");
 const req_passer = require("./req_passer.js");
+const req_passer_lobby = require("./req_passer_lobby.js");
 
 // FONCTION DE CALLBACK APPELLEE POUR CHAQUE REQUETE
 
@@ -105,7 +106,10 @@ const traite_requete = function (req, res) {
 		case '/req_passer' :
 			req_passer(req,res,query);
 			break;
-		
+		case '/req_passer_lobby' :
+			req_passer_lobby(req,res,query);
+			break;
+
 		default:
 			req_statique(req, res, query);
 			break;
