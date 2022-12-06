@@ -50,9 +50,19 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 
 	function calculbanque(l){
 		let total = 0;
+		let c = 0;
 		for(let i = 0; i < l.length; i++){
 			total += Number(valeur(l[i]));
+			console.log("total" + total);
+			if(Number(valeur(l[i])) === 11){
+				c += 1;
+			}
 		}
+			while(total > 21 && c !== 0){
+				total -= 10;
+				c--;
+				console.log("total 10 :" + total);
+			}
 		return total;
 	}
 module.exports = {
