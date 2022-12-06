@@ -14,7 +14,6 @@ const actualiser_lobby = function (req, res, query) {
 	let tables;
 	let pseudo;
 	let pseudos;
-	let continuer;
 	let joueur;
 	let marqueurs;
 	let page;
@@ -49,33 +48,8 @@ const actualiser_lobby = function (req, res, query) {
           }
       }
 
-
 	for(let i = 0; i < lobby[choix].joueurs.length; i++){
 		pseudos.push(membres[indice].pseudo);
-//		pseudos.push(membres[lobby[choix].joueurs[i]].pseudo);
-	}
-
-	//Vérifier si la table est libre
-	
-	continuer = tables[choix].etat;
-
-	if(continuer === false){
-		tables[choix].joueurs = [];
-
-		while (lobby[choix].joueurs.length > 0 && tables[choix].joueurs.length < 5) {
-			tables[choix].joueurs.push(lobby[choix].joueurs[0]);
-			lobby[choix].joueurs.splice(0, 1);
-		}
-
-		tables[choix].etat = true;
-		tables[choix].compter = true;
-		tables[choix].mises = [];
-		tables[choix].cartes = [];
-		tables[choix].main = [];
-
-		for (let j of tables[choix].joueurs) {
-			tables[choix].mises.push(null);
-		}
 	}
 
 	//Mémorisation du Contexte
