@@ -15,10 +15,20 @@
         <div class="banque">
             <h2 class="text_banque">Banque</h2>
             <div class="cartes_banque">
-                {% for carte in banque %}
-                <img src="52_cartes/{{ carte + 1 }}.svg"> 
-                {% endfor %}
+
+           
+            {% if banque_actif %}
+
+            {% for carte in banque %}
+            <img src="52_cartes/{{ carte + 1 }}.svg">
+            {% endfor %}
+            {% else %}
+            <img src="52_cartes/{{ banque[0] + 1 }}.svg">
+            <img src="52_cartes/53.svg">
+            {% endif %}
+
             </div>   
+
         </div>
 
         <div class="mains">

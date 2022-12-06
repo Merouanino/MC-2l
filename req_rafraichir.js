@@ -136,7 +136,7 @@ const req_rafraichir = function (req,res,query){
 	contenu = JSON.stringify(lobby, null, "\t");
     fs.writeFileSync("lobbys.json", contenu, "UTF-8");
 	
-	marqueurs.inactif = banque_etat === false;
+	marqueurs.banque_actif = banque_actif;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;

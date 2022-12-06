@@ -80,6 +80,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	fs.writeFileSync("tables.json",contenu,"UTF-8");
 	
 	marqueurs = {};
+	marqueurs.banque_actif = tables[choix].joueurs.length === tables[choix].actif;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
