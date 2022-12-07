@@ -48,7 +48,7 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	
 		//Initialisation des cartes
     	if(tables[choix].cartes.length === 0){ 
-    		let paquet = fct.carteInit()
+    		let paquet = fct.carteInit();
     		tables[choix].cartes = paquet;
 		}
     
