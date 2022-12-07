@@ -23,8 +23,8 @@ const actualiser_lobby = function (req, res, query) {
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;
     query = requete.query;
-	
 	choix = query.choix;
+	pseudo = query.pseudo;
 
 	//Récupération du contexte
 	
@@ -39,18 +39,11 @@ const actualiser_lobby = function (req, res, query) {
 
 	//Actualiser la liste d'attente avec les pseudo
 
-	pseudo = query.pseudo;
 	pseudos = [];
 
-	for (let i = 0; i < membres.length; i++){
-          if(membres[i].pseudo === pseudo){
-              indice = i;
-          }
-      }
-
-	for(let i = 0; i < lobby[choix].joueurs.length; i++){
-		pseudos.push(membres[indice].pseudo);
-	}
+	for (let j = 0; j < lobby[choix].joueurs.length; j++){
+        pseudos.push(membres[lobby[choix].joueurs[j]].pseudo);
+    }
 
 	//Mémorisation du Contexte
 
