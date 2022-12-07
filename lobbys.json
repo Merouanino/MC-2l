@@ -1,1 +1,26 @@
-[{"joueurs":[],"min":20},{"joueurs":[],"min":50},{"joueurs":[],"min":100}]
+[
+	{
+		"joueurs": [],
+		"choix": [
+			0
+		],
+		"min": 20,
+		"etape": 0
+	},
+	{
+		"joueurs": [],
+		"choix": [
+			1
+		],
+		"min": 50,
+		"etape": 0
+	},
+	{
+		"joueurs": [],
+		"choix": [
+			2
+		],
+		"min": 100,
+		"etape": 0
+	}
+]

@@ -12,19 +12,11 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	let tables;
 	let choix;
 	let pseudo;
-	let mise;
-	let joueur;
-	let joueur_mise;
-	let marqueurs;
-	let page;
-	let requete;
-	let pathname;
 	let cartes;
+	let joueur_mise;
+	let page;
+	let marqueurs;
 
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
-	
 	//Récupération du contexte
 	
 	contenu = fs.readFileSync("lobbys.json", "UTF-8");
@@ -53,7 +45,6 @@ const actualiser_lobby_plateau = function (req, res, query) {
 		}
     
 		//Distribution des cartes 
-		console.log(tables[choix].main);
 		if(tables[choix].main.length === 0){
 			for(let i = 0; i < tables[choix].joueurs.length; i++){
 				tables[choix].main.push([
@@ -83,9 +74,10 @@ const actualiser_lobby_plateau = function (req, res, query) {
 	marqueurs.banque_actif = tables[choix].joueurs.length === tables[choix].actif;
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
-	marqueurs.mise = mise;
+	//marqueurs.mise = mise;
 	marqueurs.mains = cartes;
 	marqueurs.banque = tables[choix].banque;
+	
 	page = nunjucks.renderString(page, marqueurs);
 
 	res.writeHead(200, { 'Content-Type': 'text/html' });
