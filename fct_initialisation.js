@@ -66,7 +66,14 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 			}
 		return total;
 	}
-
+	
+	function liste_attente(l1,l2){
+		let ls = [];
+		for(let i = 0; i < l1.length; i++){
+			ls.push(l2[l1[i]].pseudo);
+		}
+		return ls;
+	}
 module.exports = {
 	carte : carte,
 	couleur : couleur,
@@ -74,5 +81,6 @@ module.exports = {
 	carteRandom : carteRandom,
 	carteInit : carteInit,
 	calculbanque : calculbanque,
+	liste_attente : liste_attente
 };
 

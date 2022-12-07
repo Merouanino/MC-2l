@@ -3,26 +3,19 @@
 const fs = require("fs");
 const nunjucks = require("nunjucks");
 const url = require("url");
+const fct = require("./fct_initialisation");
 
 const actualiser_lobby = function (req, res, query) {
-	let requete;
-	let pathname;
 	let choix;
+	let pseudo;
 	let contenu;
     let lobby;
 	let membres;
 	let tables;
-	let pseudo;
 	let pseudos;
-	let joueur;
 	let marqueurs;
 	let page;
-	let nul;
-	let indice;
 
-	requete = url.parse(req.url, true);
-    pathname = requete.pathname;
-    query = requete.query;
 	choix = query.choix;
 	pseudo = query.pseudo;
 
@@ -38,12 +31,8 @@ const actualiser_lobby = function (req, res, query) {
     tables = JSON.parse(contenu);
 
 	//Actualiser la liste d'attente avec les pseudo
-
-	pseudos = [];
-
-	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-        pseudos.push(membres[lobby[choix].joueurs[j]].pseudo);
-    }
+	
+	 pseudos = fct.liste_attente(lobby[choix].joueurs,membres);
 
 	//Mémorisation du Contexte
 

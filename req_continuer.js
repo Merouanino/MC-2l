@@ -3,25 +3,19 @@
 const fs = require("fs");
 const nj = require("nunjucks");;
 const url = require('url');
+const fct = require("./fct_initialisation.js");
 
 const req_continuer = function (req, res, query) {
-	let requete;
-	let pathname;
 	let pseudo;
+	let choix;
 	let contenu;
 	let membres;
+	let lobbys;
 	let coins;
 	let tables;
 	let page;
     let marqueurs;
-	let choix;
 	let indice;
-	let lobbys;
-
-	requete = url.parse(req.url, true);
-    pathname = requete.pathname;
-    query = requete.query;
-
 
 	//Récupération des crédits associés au compte
 	
@@ -44,21 +38,12 @@ const req_continuer = function (req, res, query) {
 
 	lobbys[choix].joueurs.push(indice);
 
-	let pseudos = []; 
-    
-	for (let j = 0; j < lobbys[choix].joueurs.length; j++){
-		pseudos.push(membres[indice].pseudo);
-
-        //pseudos.push(membres[lobby[choix].joueurs[j]].pseudo);
-	}
-
+	let pseudos = fct.liste_attente(lobbys[choix].joueurs,membres); 
 
 	//on enregistre
 
 	contenu = JSON.stringify(lobbys);
 	fs.writeFileSync("lobbys.json", contenu, "UTF-8");
-
-	page = fs.readFileSync(`modele_lobby.html`, "UTF-8");
 
 	marqueurs = {};
 	marqueurs["pseudos"] = pseudos;
@@ -67,6 +52,7 @@ const req_continuer = function (req, res, query) {
 	marqueurs.choix = choix;
 	marqueurs.credits = coins;
 	
+	page = fs.readFileSync(`modele_lobby.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
     
 	res.writeHead(200, { 'Content-Type': 'text/html' });
