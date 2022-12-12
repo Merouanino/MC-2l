@@ -74,6 +74,17 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 		}
 		return ls;
 	}
+
+	function indice_joueur(l,p){
+		let indice;
+		for(let i = 0; i < l.length; i++){
+			if(l[i].pseudo === p){
+				indice = i;
+			}
+		}
+		return indice;
+	};
+
 module.exports = {
 	carte : carte,
 	couleur : couleur,
@@ -81,6 +92,7 @@ module.exports = {
 	carteRandom : carteRandom,
 	carteInit : carteInit,
 	calculbanque : calculbanque,
-	liste_attente : liste_attente
+	liste_attente : liste_attente,
+	indice_joueur : indice_joueur
 };
 

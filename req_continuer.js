@@ -30,11 +30,7 @@ const req_continuer = function (req, res, query) {
 	contenu = fs.readFileSync("lobbys.json", "UTF-8");
 	lobbys = JSON.parse(contenu);
 
-	for (let i = 0; i < membres.length; i++){
-		if(membres[i].pseudo === pseudo){
-			indice = i;
-		}
-	}
+	indice = fct.indice_joueur(membres,pseudo);
 
 	lobbys[choix].joueurs.push(indice);
 

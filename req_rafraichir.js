@@ -48,11 +48,8 @@ const req_rafraichir = function (req,res,query){
 	}
 	
 	//recup l'indice du joueur dans membres.json
-    for(let i = 0; i < membres.length ; i++){
-        if(membres[i].pseudo === pseudo){
-            indice = i;
-        }
-    }
+   
+	indice = fct.indice_joueur(membres,pseudo);
 
     //Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
     id_joueur = tables[choix].joueurs.indexOf(indice);
@@ -129,7 +126,6 @@ const req_rafraichir = function (req,res,query){
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
 	marqueurs.banque = tables[choix].banque;
-	// marqueurs.actif = tables[choix].actif;
 	marqueurs.mains = tables[choix].main;
 	
 	page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
