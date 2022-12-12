@@ -36,12 +36,6 @@ const req_miser = function (req,res,query){
 	
 	indice = fct.indice_joueur(membres,pseudo);
 
-	/*for(let i = 0; i < membres.length ; i++){
-		if(membres[i].pseudo === pseudo){
-			indice = i;
-		}
-	}
-*/
 	//Traitement
 	//Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
 	
