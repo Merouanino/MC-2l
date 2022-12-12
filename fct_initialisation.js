@@ -85,6 +85,16 @@ const cartes = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24
 		return indice;
 	};
 
+	function coins_joueur(l,p){
+		let coins;
+		for(let i = 0; i < l.length; i++){
+			if(l[i].pseudo === p){
+				coins = l[i].coins;
+			}
+		}
+		return coins;
+	}
+
 module.exports = {
 	carte : carte,
 	couleur : couleur,
@@ -93,6 +103,7 @@ module.exports = {
 	carteInit : carteInit,
 	calculbanque : calculbanque,
 	liste_attente : liste_attente,
-	indice_joueur : indice_joueur
+	indice_joueur : indice_joueur,
+	coins_joueur : coins_joueur
 };
 
