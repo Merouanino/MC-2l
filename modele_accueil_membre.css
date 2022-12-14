@@ -13,61 +13,76 @@ html{
 
 body{
     margin : auto;
-    margin-top: 5%;
+    margin-top: 0%;
     line-height: 20px;
     text-align: center;
     width: 1000px;
+    font-family: "avion", sans-serif;
+}
+
+.logo{
+    width: 200px;
+    height: auto;
+}
+.title{
+    display: absolute;
+}
+.tables{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 100px;
 }
 
 .img1{
-    padding-top: 40px;
-    width: 250px;
-    height: auto;
-    position: absolute;
-    left: 10%;
-    right: 90%;
-    
+    height: 120px;
+    width: auto;
+    transition: 0.3s;
+}
+
+.img1:hover{
+    height: 150px;
+    width: auto;
+    transition: 0.3s;
 }
 
 .img2{
-    padding-top: 40px;
-    width: 250px;
-    height: auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 120px;
+    width: auto;
+    transition: 0.3s;
+}
+.img2:hover{
+    height: 150px;
+    width: auto;
+    transition: 0.3s;
 }
 
 .img3{
-    padding-top: 40px;
-    width: 250px;
-    height: auto;
-    position: absolute;
-    right: 10%;
+    height: 120px;
+    width: auto;
+    transition: 0.3s;
+}
+.img3:hover{
+    height: 150px;
+    width: auto;
+    transition: 0.3s;
 }
 
 h1{   
     font-size: 300%;
 }
 
-.table1{
-    position: absolute;
-}
-
-.table2{
-    position: center,absolute;
-}
-
-.table3{
-    position: absolute;
-}
-
 a{
     text-decoration: none;  
+    color: black;
 }
 
-.rickroll{
-    position: absolute;
-    bottom: 5%;
+.Regles{
+    text-align: left;
+    padding-top: 20px;
+    text-decoration: none;
 }
+.pseudo{
+    font-size: 20px;
+}
+

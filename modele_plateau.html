@@ -4,7 +4,7 @@
 
         <title></title>
         <meta charset="utf-8">
-        <meta http-equiv="refresh" content="3; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">
+        <!-- <meta http-equiv="refresh" content="3; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">  -->
         <link rel="stylesheet" type="text/css" href="modele_plateau.css">
         
     </head>
@@ -35,7 +35,7 @@
             {% for main in mains %}
             <div class="main">
                 {% for carte in main %}
-                <img src="52_cartes/{{ carte + 1 }}.svg"> 
+                <img class="image_main" src="52_cartes/{{ carte + 1 }}.svg"> 
                 {% endfor %}
                 </div>
 

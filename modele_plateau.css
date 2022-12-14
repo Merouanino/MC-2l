@@ -1,5 +1,10 @@
 /*:nth-child*/
 
+/*body{
+    background-image : url('images/plateau.jpg');
+    background-size: cover;
+}*/
+
 img {
     width : 100px;
     height : auto;
@@ -22,10 +27,40 @@ img {
     margin: 100px 20px 0px 20px;
     justify-content: space-between;
 }
-.main:nth-child(2n) {
+.mains:nth-child(2n) {
     padding-top: 90px;
 
 }
-.main:nth-child(3) {
+.mains:nth-child(3) {
     padding-top: 180px;
+}
+
+.main{
+    display: flex;
+}
+
+.image_main:nth-child(1n+3){
+    position: absolute; 
+    padding-left: 40px;
+    padding-top: 30px;
+}
+.image_main:nth-child(1n+4){
+    position: absolute; 
+    padding-left: 70px;
+    padding-top: 30px;
+}
+.image_main:nth-child(1n+5){
+    position: absolute; 
+    padding-left: 40px;
+    padding-top: 30px;
+}
+.image_main:nth-child(1n+6){
+    position: absolute; 
+    padding-left: 70px;
+    padding-top: 30px;
+}
+.image_main:nth-child(1n+7){
+    position: absolute; 
+    padding-left: 70px;
+    padding-top: 30px;
 }

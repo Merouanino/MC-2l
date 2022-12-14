@@ -7,32 +7,60 @@
 		<meta http-equiv="refresh" content="5" url="/req_identifier">
 	</head>
 	<body>
-		<h1>Bienvenue !</h1>
+		<div class="title">
+			<img class="logo" src="images/MC-2l.svg">
+			<h1>Bienvenue !</h1>
+		</div>
 
-		<p><em>{{ pseudo }}</em></p>
+		<p class="pseudo"><em>{{ pseudo }}</em></p>
 		<p>Vous avez {{credits}} crédits.</p>
-		<p class="table1"> {{ tables[0].joueurs }}/5</p>
-		<p class="table2"> {{ tables[1].joueurs }}/5</p>
-		<p class="table3"> {{ tables[2].joueurs }}/5</p>
+		
+		
+		
+		<div class="tables">
 
-			<map name="table_BJ">
-				<area shape="rect" coords="0,0,852,450" href="/req_rejoindre?choix=0&pseudo={{pseudo}}">
-			</map>
-			<img class="img1" usemap="#table_BJ" src="images/table_BJ.png" alt="table_BJ" >
+			<div class="table1">
 
+				<map name="table_BJ">
+					<area shape="rect" coords="0,0,852,450" href="/req_rejoindre?choix=0&pseudo={{pseudo}}">
+				</map>
 
-		<map name="table_BJ2">
-			<area shape="rect" coords="0,0,852,450" href="/req_rejoindre?choix=1&pseudo={{pseudo}}">
-		</map>
-		<img class="img2" usemap="#table_BJ2" src="images/table_BJ.png" alt="table_BJ">
+				<a href="/req_rejoindre?choix=0&pseudo={{pseudo}}"><img class="img1" src="images/table_BJ.png" ></a>
+				<p class="table1"> {{ tables[0].joueurs }}/5</p>
+			</div>
 
-		<map name="table_BJ3">
-			<area shape="rect" coords="0,0,852,450" href="/req_rejoindre?choix=2&pseudo={{pseudo}}">
-		</map>
-		<img class="img3" usemap="#table_BJ3" src="images/table_BJ.png" alt="table_BJ">
+			<div class="table2">
+				<a href="/req_rejoindre?choix=1&pseudo={{pseudo}}"><img class="img2" src="images/table_BJ.png" ></a>
+				<p class="table2"> {{ tables[1].joueurs }}/5</p>
+			</div>
 
-		<h1><a class="rickroll" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Regles</a></h1>
+			<div class="table3">
+				<a href="/req_rejoindre?choix=2&pseudo={{pseudo}}"><img class="img3" src="images/table_BJ.png" ></a>
+				<p class="table3"> {{ tables[2].joueurs }}/5</p>
+			</div>
+			
+		</div>
 
-		</form>
+		<h1><a class="Regles" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Regles</a></h1>
+		<p class="Regles"> Issu d’un jeu de cartes du très apprécié au 18ème siècle, 
+			le “21” consiste à battre la Banque, représentée par le Croupier, 
+			sans dépasser 21 sinon vous perdez votre mise. Si vous atteignez le Blackjack (soit une carte valant 10 + un As) votre mise est payée 3 pour 2, 
+			si vous gagnez contre le Croupier, mais sans atteindre 21 points, vous remportez 1 fois votre mise.  
+
+			- Du 2 au 9 : chaque carte a sa propre valeur nominale.</br> </br>
+			
+			 - Les 10, Valets, Dames et Rois valent 10 et sont appelés les « Bûches ».</br> </br>
+			
+			 - Les As équivalent à 1 ou à 11 selon le jeu du joueur Si votre main ne dépasse pas 21, l’as compte 11. Si au contraire elle le dépasse, l’As compte pour 1 ; la valeur de l’As étant toujours calculée à votre avantage.</br></br>
+			
+			 - La main appelée « Blackjack » est composée d’un As et d’une carte valant 10, pour un total de 21, reçues dès le début.</br> </br>
+			
+			Certes le Blackjack est un jeu de hasard mais il est possible d’influer sur la partie avec une stratégie basée sur l’observation dont les principes les plus simples sont : </br></br>
+			 - Si le croupier a une carte comprise entre 2 et 6, il ne peut pas gagner puisque même avec une « bûche », il sera en-dessous de 17 et il devra tirer une carte supplémentaire 
+			 - Si le croupier tire un 7, attention car s’il sort une « bûche » il sera en mesure de gagner. 
+			Avec la pratique, vous apprendrez à anticiper les possibilités du jeu du Croupier et vos chances de gagner. 
+			
+			Lancez-vous et décidez quand vous arrêter, doubler la mise ou tirer deux cartes égales. </p>
+			<hr>
 	</body>
 </html>
