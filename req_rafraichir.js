@@ -48,7 +48,6 @@ const req_rafraichir = function (req,res,query){
 	}
 	
 	//recup l'indice du joueur dans membres.json
-   
 	indice = fct.indice_joueur(membres,pseudo);
 
     //Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
@@ -69,6 +68,7 @@ const req_rafraichir = function (req,res,query){
 	gain = tables[choix].mises[id_joueur];
 	
 	//verification
+	croupier = fct.calculbanque(tables[choix].banque);
 
 	if(banque_actif && tables[choix].compter === true){
 		if(somme[id_joueur] === 21){
