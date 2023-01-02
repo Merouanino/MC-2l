@@ -1,3 +1,7 @@
+@font-face {
+    font-family:"avion";
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+}
 html{
     background-image : url('images/image_de_fond_acceuil.jpeg');
     background-size : cover;
@@ -15,6 +19,8 @@ body{
     border: 1px solid white;
     background : white;
     opacity : 0.9;
+    font-family: "avion", sans-serif;
+
 }
 
 
