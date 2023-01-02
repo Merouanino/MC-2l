@@ -4,7 +4,7 @@
 
         <title></title>
         <meta charset="utf-8">
-        <!-- <meta http-equiv="refresh" content="3; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">  -->
+        <meta http-equiv="refresh" content="3; url=/req_rafraichir?choix={{choix}}&pseudo={{pseudo}}">
         <link rel="stylesheet" type="text/css" href="modele_plateau.css">
         
     </head>
@@ -14,50 +14,53 @@
        
         <div class="banque">
             <h2 class="text_banque">Banque</h2>
+
             <div class="cartes_banque">
 
-           
             {% if banque_actif %}
 
             {% for carte in banque %}
-            <img src="52_cartes/{{ carte + 1 }}.svg">
+            <img class="carte_banque" src="52_cartes/{{ carte + 1 }}.svg">
             {% endfor %}
             {% else %}
-            <img src="52_cartes/{{ banque[0] + 1 }}.svg">
-            <img src="52_cartes/53.svg">
+            <img class="carte_banque" src="52_cartes/{{ banque[0] + 1 }}.svg">
+            <img class="carte_banque" src="52_cartes/53.svg">
             {% endif %}
 
             </div>   
 
         </div>
 
+
         <div class="mains">
             {% for main in mains %}
+
             <div class="main">
+
                 {% for carte in main %}
                 <img class="image_main" src="52_cartes/{{ carte + 1 }}.svg"> 
                 {% endfor %}
-                </div>
 
+            </div>
             {% endfor %}
         </div>
 
-        <div class="bouton">
-
-            {% if actif %}
-            <a href="/req_prendre?choix={{choix}}&pseudo={{pseudo}}"><button>Prendre</button></a>
-            <a href="/req_passer?choix={{choix}}&pseudo={{pseudo}}"><button>passer</button></a>
-            {% endif %}
-
-        </div>
 
     </div>
 
-        {% if fin %}
-            <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button>Quitter</button></a>
-            <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button>Continuer</button></a>
+    <div class="bouton">
+        {% if actif %}
+        <a href="/req_prendre?choix={{choix}}&pseudo={{pseudo}}"><button class="button">Prendre</button></a>
+        <a href="/req_passer?choix={{choix}}&pseudo={{pseudo}}"><button class="button">passer</button></a>
         {% endif %}
-    
+    </div>
+
+    <div class="bouton">
+        {% if fin %}
+            <a href="/req_quitter?choix={{choix}}&pseudo={{pseudo}}"><button class="button">Quitter</button></a>
+            <a href="/req_continuer?choix={{choix}}&pseudo={{pseudo}}"><button class="button">Continuer</button></a>
+        {% endif %}
+    </div>
     </body>
 </html>
 

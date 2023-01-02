@@ -1,12 +1,23 @@
+@font-face {
+    font-family:"avion";
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+}
+html{
+    font-family:"avion";
+}
+
+body{
+    text-align: center;
+    font-family: "avion", sans-serif;
+}
+
 .jeton_10{
     height: auto;
     width: 120px;
-
 }
 .jeton_50{
     height: auto;
-    width: 120px;
-    
+    width: 120px;    
 }
 .jeton_100{
     height: auto;
@@ -25,8 +36,14 @@
     width: 120px;
 }
 
-h2{
-    padding-left: 5%;
+
+.jetons{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 80px 150px 0px 150px;
+}
+.timer{
+    margin-top: 50px;
 }
 
 @media (max-width: 600px) {

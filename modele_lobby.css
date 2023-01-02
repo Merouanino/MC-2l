@@ -1,0 +1,7 @@
+@font-face {
+    font-family:"avion";
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+}
+body{
+    font-family: "avion", sans-serif;
+}
