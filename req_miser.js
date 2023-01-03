@@ -46,9 +46,11 @@ const req_miser = function (req,res,query){
 	if (membres[indice].coins >= mise){
 		membres[indice].coins -= mise;
 		tables[choix].mises[indice_pseudo] = mise;
+		page = fs.readFileSync(`modele_lobby_plateau.html`, "UTF-8");
+	}else{
+		// TODO: Réafficher la page si la mise est trop grande.
+		page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
 	}
-	// TODO: Réafficher la page si la mise est trop grande.
-
 	//Mémorisation du Contexte
 	
 	contenu = JSON.stringify(membres);
@@ -64,7 +66,6 @@ const req_miser = function (req,res,query){
 	marqueurs.mise = mise;
 	marqueurs.choix = choix;
 	
-	page = fs.readFileSync(`modele_lobby_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
 
 	res.writeHead(200, { 'Content-Type' : 'text/html' });
