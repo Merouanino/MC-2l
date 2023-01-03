@@ -3,6 +3,7 @@
 const fs = require("fs");
 const nj = require("nunjucks");;
 const url = require('url');
+const fct = require("./fct_initialisation.js");
 
 const req_quitter_lobby = function (req, res, query) {
 	let requete;
@@ -24,11 +25,7 @@ const req_quitter_lobby = function (req, res, query) {
 	members = fs.readFileSync("membres.json", "UTF-8");
 	members = JSON.parse(members);
 	
-	for (let i = 0; i < members.length; i++){
-		if(members[i].pseudo === pseudo){
-			coins = members[i].coins;
-		}
-	}
+	coins = fct.coins_joueur(members,pseudo);
 
 	requete = url.parse(req.url, true);
     pathname = requete.pathname;

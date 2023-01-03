@@ -5,24 +5,17 @@ const nj = require("nunjucks");
 const url = require("url");
 
 const req_passer_lobby = function (req,res,query){
-    let page;
-    let contenu;
-    let requete;
-    let pathname;
     let pseudo;
     let choix;
-    let marqueurs = {};
-	let lobbys;
-	let pseudos;
-	let membres;
-	let continuer;
 	let tables;
+	let membres;
+	let lobbys;
+	let continuer;
+    let contenu;
+    let marqueurs = {};
+    let page;
 
     //Récupération du Contexte
-
-    requete = url.parse(req.url, true);
-    pathname = requete.pathname;
-    query = requete.query;
 
     pseudo = query.pseudo;
     choix = query.choix;
@@ -39,22 +32,16 @@ const req_passer_lobby = function (req,res,query){
     //Traitement
 
     lobbys[choix].etape = 1;
-	pseudos = [];
-
-    for(let i = 0; i < lobbys[choix].joueurs.length; i++){
-        pseudos.push(membres[lobbys[choix].joueurs[i]].pseudo);
-    }
 
 	//Vérifier si la table est libre
-    continuer = tables[choix].etat;
+    
+	continuer = tables[choix].etat;
 
     if(continuer === false){
         tables[choix].joueurs = []; 
-		console.log("manger");
         while (lobbys[choix].joueurs.length > 0 && tables[choix].joueurs.length < 5) {
             tables[choix].joueurs.push(lobbys[choix].joueurs[0]);
             lobbys[choix].joueurs.splice(0, 1); 
-			console.log(lobbys[choix].joueurs);
         }
 
         tables[choix].etat = true;
@@ -68,7 +55,6 @@ const req_passer_lobby = function (req,res,query){
         }   
     }   
 
-
     //Mémorisation du Contexte
 
     contenu = JSON.stringify(tables);
@@ -78,11 +64,11 @@ const req_passer_lobby = function (req,res,query){
     fs.writeFileSync("lobbys.json", contenu, "utf-8");
     
 	//Fabrication et envoi de la page HTML
-    marqueurs = {};
-    marqueurs["pseudos"] = pseudos;
-    marqueurs.etape = lobbys[choix].etape === 0;
+    
+	marqueurs = {};
 	marqueurs.pseudo = pseudo;
     marqueurs.choix = choix;
+    marqueurs.etape = lobbys[choix].etape === 0;
     
 	page = fs.readFileSync(`modele_jeu.html`, "UTF-8");
     page = nj.renderString(page,marqueurs);
@@ -90,7 +76,6 @@ const req_passer_lobby = function (req,res,query){
     res.writeHead(200, { 'Content-Type' : 'text/html'});
     res.write(page);
     res.end();
-
 };
 module.exports = req_passer_lobby;
 

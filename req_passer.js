@@ -5,20 +5,14 @@ const url = require("url");
 const fct = require("./fct_initialisation.js");
 
 const req_passer = function (req,res,query){
-	let page;
-	let contenu;
-	let requete;
-	let pathname;
 	let pseudo;
 	let choix;
-	let marqueurs = {};
 	let tables;
+	let contenu;
+	let marqueurs = {};
+	let page;
 
 	//Récupération du Contexte
-
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
 
 	pseudo = query.pseudo;
 	choix = query.choix;

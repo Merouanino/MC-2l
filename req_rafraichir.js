@@ -8,30 +8,24 @@ const fct = require("./fct_initialisation.js");
 
 const req_rafraichir = function (req,res,query){
 	
-	let page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
-	let contenu;
-	let requete;
-	let pathname;
-	let choix;
-	let pseudo;
 	let lobby;
 	let membres;
 	let tables;
-	let somme = [0,0,0,0,0];
-	let mise;
+	let choix;
+	let pseudo;
 	let croupier = 0;
-	let marqueurs = {};
+	let somme = [0,0,0,0,0];
 	let indice;
 	let id_joueur;
-	let gain;
-	let i;
 	let banque_etat;
+	let gain;
+	let contenu;
+	let marqueurs = {};
+	let page;
+	
+	let mise;
 
 	//Récupération du Contexte
-
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
 
 	lobby = fs.readFileSync("lobbys.json", "UTF-8");
 	lobby = JSON.parse(lobby);
@@ -42,12 +36,10 @@ const req_rafraichir = function (req,res,query){
 	tables = fs.readFileSync("tables.json", "UTF-8");
 	tables = JSON.parse(tables);
 
-	//mise = tables[choix].mises;
 	choix = query.choix;
 	pseudo = query.pseudo;
 	
 	//Traitement
-	
 	//Calcul des mains
 	croupier = fct.calculbanque(tables[choix].banque);
 		
@@ -56,11 +48,7 @@ const req_rafraichir = function (req,res,query){
 	}
 	
 	//recup l'indice du joueur dans membres.json
-    for(i = 0; i < membres.length ; i++){
-        if(membres[i].pseudo === pseudo){
-            indice = i;
-        }
-    }
+	indice = fct.indice_joueur(membres,pseudo);
 
     //Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
     id_joueur = tables[choix].joueurs.indexOf(indice);
@@ -80,9 +68,7 @@ const req_rafraichir = function (req,res,query){
 	gain = tables[choix].mises[id_joueur];
 	
 	//verification
-	console.log(membres[indice].coins);	
-	console.log(tables[choix].compter);
-	console.log(banque_actif);
+	croupier = fct.calculbanque(tables[choix].banque);
 
 	if(banque_actif && tables[choix].compter === true){
 		if(somme[id_joueur] === 21){
@@ -108,7 +94,6 @@ const req_rafraichir = function (req,res,query){
 		}
 	}
 
-	console.log(membres[1].coins);
 	//Mémorisation du Contexte
 
 	contenu = JSON.stringify(tables, null, "\t");
@@ -141,14 +126,13 @@ const req_rafraichir = function (req,res,query){
 	marqueurs.choix = choix;
 	marqueurs.mise = mise;
 	marqueurs.banque = tables[choix].banque;
-	// marqueurs.actif = tables[choix].actif;
 	marqueurs.mains = tables[choix].main;
+	
+	page = fs.readFileSync(`modele_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
 	
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });
 	res.write(page);
 	res.end();
-
 };
-
 module.exports = req_rafraichir;

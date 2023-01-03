@@ -3,16 +3,15 @@
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require('url');
+const fct = require("./fct_initialisation.js");
 
 const req_rejoindre = function (req,res,query){
-	let page = fs.readFileSync(`modele_lobby.html`, "UTF-8");	
-	let contenu;
-	let requete;
-	let pathname;
 	let choix;
 	let pseudo;
 	let lobby;
 	let membres;
+	let contenu;
+	let page;
 	
 	//Récupération du Contexte
 	
@@ -25,10 +24,6 @@ const req_rejoindre = function (req,res,query){
 	membres = fs.readFileSync("membres.json", "UTF-8");
 	membres = JSON.parse(membres);
 
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
-
 	//Traitement
 	
 	for (let i = 0; i < membres.length; i++){
@@ -37,12 +32,8 @@ const req_rejoindre = function (req,res,query){
 		}
 	}
 	
-	let pseudos = [];
+	let pseudos = fct.liste_attente(lobby[choix].joueurs,membres);
 
-	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-		pseudos.push(membres[ lobby[choix].joueurs[j]].pseudo );
-	}
-	
 	//Mémorisation du Contexte
 
 	contenu = JSON.stringify(lobby);
@@ -56,6 +47,7 @@ const req_rejoindre = function (req,res,query){
 	marqueurs.choix = choix;
 	marqueurs.etape = lobby[choix].etape === 0;
 
+	page = fs.readFileSync(`modele_lobby.html`, "UTF-8");	
 	page = nj.renderString(page,marqueurs);
 	
 	res.writeHead(200,{ 'Content-Type' : 'text/html' });

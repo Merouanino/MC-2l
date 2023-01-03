@@ -5,20 +5,14 @@ const nj = require("nunjucks");;
 const url = require('url');
 
 const req_quitter = function (req, res, query) {
-	let requete;
-	let pathname;
-	let marqueurs;
-	let page;
 	let pseudo;
 	let choix;
 	let members;
 	let coins;
 	let indice;
+	let marqueurs;
+	let page;
 
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
-	
 	pseudo = query.pseudo;
 	choix = query.choix;
 
@@ -34,14 +28,13 @@ const req_quitter = function (req, res, query) {
 			indice = i;
         }
     }
-
-	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
 	
 	marqueurs = {};
 	marqueurs.pseudo = pseudo;
 	marqueurs.choix = choix;
 	marqueurs.credits = coins;
 	
+	page = fs.readFileSync(`modele_accueil_membre.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
     
 	res.writeHead(200, { 'Content-Type': 'text/html' });

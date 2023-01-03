@@ -3,30 +3,21 @@
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require("url");
+const fct = require("./fct_initialisation.js");
 
 const req_miser = function (req,res,query){
-	let page;
-	let contenu;
-	let requete;
-	let pathname;
+	let mise;
 	let pseudo;
+	let choix;
 	let lobby;
 	let membres;
 	let tables;
-	let mise;
-	let coins;
-	let choix;
-
-	let joueur;
-	let indice_pseudo;
-	let i;
 	let indice;
+	let indice_pseudo;
+	let contenu;
+	let page;
 
 	//Récupération du Contexte
-	
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
 	
 	mise = Number(query.mise);
 	pseudo = query.pseudo;
@@ -42,16 +33,14 @@ const req_miser = function (req,res,query){
 	tables = JSON.parse(tables);
 
 	//recup l'indice du joueur dans membres.json
-	for(i = 0; i < membres.length ; i++){
-		if(membres[i].pseudo === pseudo){
-			indice = i;
-		}
-	}
+	
+	indice = fct.indice_joueur(membres,pseudo);
 
 	//Traitement
-
 	//Recup l'indice du joueur dans la liste des joueurs du fichier tables.json
+	
 	indice_pseudo = tables[choix].joueurs.indexOf(indice);
+	
 	//ajoute la mise des joueurs 
 	
 	if (membres[indice].coins >= mise){
@@ -74,6 +63,7 @@ const req_miser = function (req,res,query){
 	marqueurs.pseudo = pseudo;
 	marqueurs.mise = mise;
 	marqueurs.choix = choix;
+	
 	page = fs.readFileSync(`modele_lobby_plateau.html`, "UTF-8");
 	page = nj.renderString(page,marqueurs);
 
