@@ -32,14 +32,7 @@ const actualiser_lobby = function (req, res, query) {
 
 	//Actualiser la liste d'attente avec les pseudo
 	
-	 //pseudos = fct.liste_attente(lobby[choix].joueurs,membres);
-
-	pseudos = [];
-
-	for (let j = 0; j < lobby[choix].joueurs.length; j++){
-        pseudos.push(membres[lobby[choix].joueurs[j]].pseudo);
-		console.log(lobby[choix].joueurs);
-    }
+	 pseudos = fct.liste_attente(lobby[choix].joueurs,membres);
 
 	//Mémorisation du Contexte
 
