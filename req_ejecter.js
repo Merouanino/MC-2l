@@ -3,6 +3,7 @@
 const fs = require("fs");
 const nj = require("nunjucks");
 const url = require('url');
+const fct = require("./fct_initialisation.js");
 
 const req_ejecter = function(req, res, query){
     let marqueurs;
@@ -14,6 +15,7 @@ const req_ejecter = function(req, res, query){
 	let joueur;
 	let contenu;
 	let lobby;
+	let indice;
 
 	pseudo = query.pseudo;
     choix = query.choix;
@@ -35,12 +37,14 @@ const req_ejecter = function(req, res, query){
 		lobby[choix].etape = 0;
 	}
 
-	joueur = tables[choix].joueurs.indexOf(pseudo);
+	indice = fct.indice_joueur(membres, pseudo);
+	joueur = tables[choix].joueurs.indexOf(indice);
     
-	//supprétion du joueur ayant été kick de la table
-
-    tables[choix].joueurs.splice(joueur, 1);
-	tables[choix].mises.splice(joueur, 1);
+	//suppression du joueur ayant été kick de la table
+	if(joueur !== -1){
+    	tables[choix].joueurs.splice(joueur, 1);
+		tables[choix].mises.splice(joueur, 1);
+	}
 
     contenu = JSON.stringify(tables);
     fs.writeFileSync("tables.json", contenu, 'utf-8');
