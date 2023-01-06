@@ -12,8 +12,8 @@ html{
 
 body{
 	margin : auto;
-    margin-top: 0%;
-    line-height: 20px;
+    margin-top: 5%;
+    line-height: 30px;
     text-align: center;
     width: 800px;
     padding: 1em;
@@ -24,7 +24,7 @@ body{
 }
 
 .logo{
-    width: 210px;
+    width: 220px;
     height: auto;
 }
 .title{
@@ -34,7 +34,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    margin-top: 55px;
+    margin-top: 70px;
 }
 
 .img1{
