@@ -2,6 +2,22 @@
     font-family:"avion";
     src: url('fonts/Champagne & Limousines.ttf') format('truetype');
 }
+
+html{
+    background-image : url('images/image_de_fond_acceuil.jpeg');
+    background-size : cover;
+    background-repeat: no-repeat;
+    height : 100%;
+}
+
 body{
+	margin: auto;
+    margin-top: 10%;
+    text-align: center;
+    width: 600px;
+    padding: 1em;
+    border: 1px solid white;
+    background : white;
+    opacity : 0.9;
     font-family: "avion", sans-serif;
 }

@@ -2,12 +2,25 @@
     font-family:"avion";
     src: url('fonts/Champagne & Limousines.ttf') format('truetype');
 }
+
 html{
+	background-image : url('images/image_de_fond_acceuil.jpeg');
+    background-size : cover;
+    background-repeat: no-repeat;
+    height : 100%;
     font-family:"avion";
 }
 
 body{
+	margin: auto;
+    margin-top: 5%;
+    line-height: 40px;
     text-align: center;
+    width: 750px;
+    padding: 1em;
+    border: 1px solid white;
+    background : white;
+    opacity : 0.9;
     font-family: "avion", sans-serif;
 }
 
@@ -40,10 +53,10 @@ body{
 .jetons{
     display: flex;
     justify-content: space-evenly;
-    margin: 80px 150px 0px 150px;
+    margin: 20px 150px 0px 150px;
 }
 .timer{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 @media (max-width: 600px) {
