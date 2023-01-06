@@ -62,7 +62,6 @@ const req_rafraichir = function (req,res,query){
 		}
 		banque_etat = true;
 		tables[choix].etat = false;
-		lobby[choix].etape = 0;
 	}
 	//recup la valeur de la mise du joueur 
 	gain = tables[choix].mises[id_joueur];
@@ -115,8 +114,6 @@ const req_rafraichir = function (req,res,query){
 	if(banque_etat === true){
 		marqueurs.fin = true;
 	}
-	
-	lobby[choix].etape = 0;
 	
 	contenu = JSON.stringify(lobby, null, "\t");
     fs.writeFileSync("lobbys.json", contenu, "UTF-8");

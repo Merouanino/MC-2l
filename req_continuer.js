@@ -33,9 +33,10 @@ const req_continuer = function (req, res, query) {
 	indice = fct.indice_joueur(membres,pseudo);
 
 	lobbys[choix].joueurs.push(indice);
+	lobbys[choix].etape = 0;
 
 	let pseudos = fct.liste_attente(lobbys[choix].joueurs,membres); 
-
+	
 	//on enregistre
 
 	contenu = JSON.stringify(lobbys);
