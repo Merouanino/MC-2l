@@ -75,7 +75,7 @@ const req_rafraichir = function (req,res,query){
 				membres[indice].coins += gain;
 				tables[choix].compter = false;
 			}else{
-				membres[indice].coins += gain * 2;
+				membres[indice].coins += gain * 2.5;
 				tables[choix].compter = false;
 			}
 		}else if(somme[id_joueur] < 21){
